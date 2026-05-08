@@ -200,8 +200,8 @@ export default async function HomeLangPage({
   }
 
   // Fetch FAQ data for structured data
-  const faqData = await fetchFAQ(lang);
-  const faqs = faqData?.faqs?.slice(0, 10) || []; // Limit to 10 FAQs for schema
+  const faqData = await fetchFAQ(normalizeLanguage(lang));
+  const faqs = faqData?.faqs?.slice(0, 10) || [];
 
   // Generate FAQ schema
   const faqSchema = faqs.length > 0

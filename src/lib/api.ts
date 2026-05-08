@@ -45,22 +45,16 @@ export function createFetchOptions(options: RequestInit = {}): RequestInit {
  */
 export async function fetchAPI(
   endpoint: string,
-  options: RequestInit = {}
+  options: RequestInit = {},
+  tags?: string[]
 ): Promise<Response> {
   const url = endpoint.startsWith('http') ? endpoint : `${getApiBase()}${endpoint}`;
   const fetchOptions = createFetchOptions(options);
 
-  // Log actual headers being sent
-  const headersObj: Record<string, string> = {};
-  if (fetchOptions.headers instanceof Headers) {
-    fetchOptions.headers.forEach((value: string, key: string) => {
-      headersObj[key] = value;
-    });
+  // Attach Next.js cache tags for on-demand revalidation
+  if (tags?.length) {
+    (fetchOptions as any).next = { tags };
   }
-
-  console.log('[API Server] Fetching:', url);
-  console.log('[API Server] Headers:', headersObj);
-  console.log('[API Server] Tenant ID from env:', process.env.NEXT_PUBLIC_TENANT_ID);
 
   return fetch(url, fetchOptions);
 }
@@ -123,22 +117,14 @@ export async function fetchApiData<T>(
   lang: string,
   options: RequestInit = {}
 ): Promise<T | null> {
+  // Derive a cache tag from the endpoint path e.g. '/api/hero' -> 'hero'
+  const tag = endpoint.replace(/^\/api\//, "").split("?")[0];
   try {
     const url = buildApiUrl(endpoint, lang);
-    const tenantId = getTenantId();
-    console.log(`[fetchApiData] Endpoint: ${endpoint} | Lang: ${lang} | Tenant: ${tenantId}`);
-    const response = await fetchAPI(url, options);
-    
-    if (!response.ok) {
-      console.warn(`API request failed: ${response.status} ${response.statusText}`);
-      return null;
-    }
-
-    const data = await response.json();
-    console.log(`[fetchApiData] Response for ${endpoint}:`, data);
-    return data;
-  } catch (error) {
-    console.warn('Failed to fetch API data:', error);
+    const response = await fetchAPI(url, options, [tag, `${tag}-${lang}`]);
+    if (!response.ok) return null;
+    return await response.json();
+  } catch {
     return null;
   }
 }
@@ -186,12 +172,21 @@ export interface HeroData {
   tagline: string;
   image: string;
   ctaPrimary: string;
+  ctaSecondary?: string;
   urgency: string;
-  stats: {
-    clients: string;
-    costSaved: string;
-    rating: string;
-  };
+  metaTitle?: string;
+  metaDescription?: string;
+  metaKeywords?: string;
+  published?: boolean;
+  // Flat stat fields as returned by the API
+  statsClients?: string;
+  statsClientsLabel?: string;
+  statsProjects?: string;
+  statsProjectsLabel?: string;
+  statsRating?: string;
+  statsRatingLabel?: string;
+  statsSatisfaction?: string;
+  statsSatisfactionLabel?: string;
 }
 
 export const fetchHero = (lang: string = 'en') =>

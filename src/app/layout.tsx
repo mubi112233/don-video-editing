@@ -97,14 +97,8 @@ export const metadata: Metadata = {
       "Save 70% on web development with premium web design services. Modern websites that convert. Native quality, guaranteed satisfaction.",
     images: [absoluteUrl("/opengraph-image")],
   },
-  alternates: {
-    canonical: absoluteUrl("/en"),
-    languages: {
-      en: absoluteUrl("/en"),
-      de: absoluteUrl("/de"),
-      "x-default": absoluteUrl("/en"),
-    },
-  },
+  // Per-page alternates are set in each route's generateMetadata.
+  // Root layout does NOT set alternates to avoid overriding page-level hreflang.
 };
 
 const organizationJsonLd = {
