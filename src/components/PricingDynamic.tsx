@@ -487,10 +487,10 @@ export const PricingDynamic = ({ lang, initialPlans }: { lang: string; initialPl
 
                   {/* Header */}
                   <div className="mb-6 relative z-10">
-                    <h3 className={`text-2xl sm:text-3xl font-bold mb-2 group-hover:scale-105 transition-transform duration-300 ${plan.highlighted ? 'text-white' : 'text-white'}`}>
+                    <h3 className={`text-2xl sm:text-3xl font-bold mb-2 group-hover:scale-105 transition-transform duration-300 ${plan.highlighted ? 'text-white' : 'text-foreground'}`}>
                       {localizedName}
                     </h3>
-                    <p className={`text-sm font-medium ${plan.highlighted ? 'text-white/70' : 'text-white/60'}`}>
+                    <p className={`text-sm font-medium ${plan.highlighted ? 'text-white/70' : 'text-muted-foreground'}`}>
                       {localizedHours}
                     </p>
                   </div>
@@ -508,12 +508,12 @@ export const PricingDynamic = ({ lang, initialPlans }: { lang: string; initialPl
                       >
                         €{Math.round(plan.price * (1 - discount) * vaCount)}
                       </motion.span>
-                      <span className={`text-base ml-1 ${plan.highlighted ? 'text-white/60' : 'text-white/60'}`}>
+                      <span className={`text-base ml-1 ${plan.highlighted ? 'text-white/60' : 'text-muted-foreground'}`}>
                         {t('pricing.perMonth', { defaultValue: '/mo' })}
                       </span>
                     </div>
                     {plan.setupFee > 0 ? (
-                      <p className={`text-xs mt-2 ${plan.highlighted ? 'text-white/60' : 'text-white/60'}`}>
+                      <p className={`text-xs mt-2 ${plan.highlighted ? 'text-white/60' : 'text-muted-foreground'}`}>
                         {t("pricing.planSetupFee", { fee: plan.setupFee })}
                       </p>
                     ) : (
@@ -535,11 +535,11 @@ export const PricingDynamic = ({ lang, initialPlans }: { lang: string; initialPl
                         transition={{ delay: 0.5 + fIndex * 0.1 }}
                       >
                         <div className={`flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5 transition-all duration-300 group-hover:scale-110 ${
-                          plan.highlighted ? 'bg-white/20' : 'bg-primary/10 group-hover:bg-primary/20'
+                          plan.highlighted ? 'bg-white/20' : 'bg-primary/15 group-hover:bg-primary/25'
                         }`}>
                           <Check className={`w-3 h-3 ${plan.highlighted ? 'text-white' : 'text-primary'}`} />
                         </div>
-                        <span className={`text-sm leading-relaxed ${plan.highlighted ? 'text-white/85' : 'text-white/70'}`}>
+                        <span className={`text-sm leading-relaxed ${plan.highlighted ? 'text-white/85' : 'text-foreground'}`}>
                           {feature}
                         </span>
                       </motion.li>
