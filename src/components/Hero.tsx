@@ -61,6 +61,7 @@ export const Hero = ({ initialData }: { initialData?: HeroData | null }) => {
   const [heroData, setHeroData] = useState<HeroData | null>(initialData ?? null);
 
   useEffect(() => {
+    if (initialData) return; // skip client fetch — server already provided data
     const fetchHeroData = async () => {
       try {
         setLoading(true);
@@ -72,11 +73,8 @@ export const Hero = ({ initialData }: { initialData?: HeroData | null }) => {
         setLoading(false);
       }
     };
-
-    if (currentLang) {
-      fetchHeroData();
-    }
-  }, [currentLang, fallbackData]);
+    if (currentLang) fetchHeroData();
+  }, [currentLang, initialData]);
 
   const title = heroData?.title || fallbackData.title;
   const subtitle = heroData?.subtitle || fallbackData.subtitle;

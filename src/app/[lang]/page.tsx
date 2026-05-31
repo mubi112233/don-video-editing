@@ -7,7 +7,7 @@ import { fetchApiData, API_ENDPOINTS, normalizeLanguage, fetchFAQ, type HeroData
 import { generateFAQSchema, generateBreadcrumbSchema } from "@/lib/structured-data";
 import { SITE_URL, absoluteUrl, hreflangAlternates, publicLocalePathSegment } from "@/lib/site-url";
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 const SUPPORTED_LANGS = ['en', 'ge', 'de'];
 
@@ -187,8 +187,12 @@ export default async function HomeLangPage({
   const lang = rawLang === 'de' || rawLang === 'ge' ? 'ge' : 'en';
   const jsonLd = pageJsonLd(SITE_URL)[lang];
 
-  // Fetch hero data server-side so crawlers see real content in HTML
-  const heroApiData = await fetchApiData<{ hero: HeroData | HeroData[] }>(API_ENDPOINTS.HERO, normalizeLanguage(lang));
+  // Fetch hero + FAQ in parallel server-side
+  const [heroApiData, faqApiData] = await Promise.all([
+    fetchApiData<{ hero: HeroData | HeroData[] }>(API_ENDPOINTS.HERO, normalizeLanguage(lang)),
+    fetchFAQ(normalizeLanguage(lang)),
+  ]);
+
   let initialHero: HeroData | null = null;
   if (heroApiData?.hero) {
     if (Array.isArray(heroApiData.hero)) {
@@ -199,11 +203,7 @@ export default async function HomeLangPage({
     }
   }
 
-  // Fetch FAQ data for structured data
-  const faqData = await fetchFAQ(normalizeLanguage(lang));
-  const faqs = faqData?.faqs?.slice(0, 10) || [];
-
-  // Generate FAQ schema
+  const faqs = faqApiData?.faqs?.slice(0, 10) || [];
   const faqSchema = faqs.length > 0
     ? generateFAQSchema(faqs.map((f: any) => ({ question: f.question, answer: f.answer })))
     : null;
@@ -232,7 +232,7 @@ export default async function HomeLangPage({
       <Navbar />
       <main id="main-content" className="overflow-x-hidden">
         <Hero initialData={initialHero} />
-        <HomeBelowFold lang={lang} />
+        <HomeBelowFold lang={lang} initialFaqs={faqApiData?.faqs || []} />
       </main>
     </div>
   );

@@ -6,12 +6,7 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { fetchHowItWorks, type Step } from "@/lib/api";
 
-const iconMap = {
-  Calendar,
-  UserCheck,
-  Rocket,
-  LineChart
-};
+const iconMap = { Calendar, UserCheck, Rocket, LineChart };
 
 const sectionCopy = {
   en: {
@@ -26,14 +21,15 @@ const sectionCopy = {
   },
 };
 
-export const HowItWorks = () => {
-  const [steps, setSteps] = useState<Step[]>([]);
-  const [loading, setLoading] = useState(true);
+export const HowItWorks = ({ initialSteps }: { initialSteps?: Step[] }) => {
+  const [steps, setSteps] = useState<Step[]>(initialSteps ?? []);
+  const [loading, setLoading] = useState(!initialSteps);
   const pathname = usePathname();
   const currentLang = pathname.startsWith('/ge') || pathname.startsWith('/de') ? 'ge' : 'en';
   const copy = sectionCopy[currentLang as keyof typeof sectionCopy] || sectionCopy.en;
 
   useEffect(() => {
+    if (initialSteps) return;
     const fetchSteps = async () => {
       try {
         const data = await fetchHowItWorks(currentLang);
@@ -45,7 +41,7 @@ export const HowItWorks = () => {
       }
     };
     fetchSteps();
-  }, [currentLang]);
+  }, [currentLang, initialSteps]);
 
   if (loading) {
     return (
@@ -94,8 +90,8 @@ export const HowItWorks = () => {
               <motion.div
                 key={step._id || index}
                 className="relative mb-12 sm:mb-16 last:mb-0"
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50, rotateY: 0 }}
-                whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.15 }}
                 transition={{ duration: 0.8, delay: index * 0.2, ease: [0.6, -0.05, 0.01, 0.99] }}
               >
@@ -125,8 +121,6 @@ export const HowItWorks = () => {
                     <p className="text-muted-foreground leading-relaxed text-sm sm:text-base md:text-lg">
                       {step.description}
                     </p>
-
-                    {/* Decorative corner */}
                     <div className={`absolute ${index % 2 === 1 ? 'top-0 left-0 border-t-2 border-l-2 rounded-tl-xl sm:rounded-tl-2xl' : 'bottom-0 right-0 border-b-2 border-r-2 rounded-br-xl sm:rounded-br-2xl'} w-12 h-12 sm:w-16 sm:h-16 border-primary/0 group-hover:border-primary/50 transition-all duration-500`} />
                   </motion.div>
                 </div>
@@ -148,5 +142,3 @@ export const HowItWorks = () => {
     </motion.section>
   );
 };
-
-

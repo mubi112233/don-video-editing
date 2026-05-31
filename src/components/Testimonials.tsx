@@ -18,50 +18,39 @@ interface Testimonial {
   order?: number;
 }
 
-export const Testimonials = () => {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-  const [loading, setLoading] = useState(true);
+export const Testimonials = ({ initialTestimonials }: { initialTestimonials?: Testimonial[] }) => {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>(initialTestimonials ?? []);
+  const [loading, setLoading] = useState(!initialTestimonials);
   const [error, setError] = useState<string | null>(null);
 
   const pathname = usePathname();
   const currentLang = pathname.startsWith('/ge') || pathname.startsWith('/de') ? 'ge' : 'en';
-
   const copy = getCopy(currentLang, 'testimonials');
 
-  // Fetch testimonials from API
   useEffect(() => {
+    if (initialTestimonials) return;
     const fetchTestimonialsData = async () => {
       try {
         setLoading(true);
         setError(null);
         const data = await fetchTestimonials(currentLang);
         if (!data) throw new Error('Failed to fetch testimonials');
-
-        const fetchedTestimonials = Array.isArray(data.testimonials)
+        const fetched = Array.isArray(data.testimonials)
           ? [...data.testimonials].sort((a: any, b: any) => (a?.order ?? 0) - (b?.order ?? 0))
           : [];
-        
-        setTestimonials(fetchedTestimonials);
+        setTestimonials(fetched);
       } catch (err) {
-        if (process.env.NODE_ENV === 'development') {
-          console.error('Error fetching testimonials:', err);
-        }
         setError(err instanceof Error ? err.message : 'Failed to load testimonials');
       } finally {
         setLoading(false);
       }
     };
-
     fetchTestimonialsData();
-  }, [currentLang]);
+  }, [currentLang, initialTestimonials]);
 
-  // Loading state
   if (loading) {
     return (
-      <motion.section 
-        id="testimonials"
-        className={`relative ${SPACING.section} bg-background text-foreground z-40`}
-      >
+      <motion.section id="testimonials" className={`relative ${SPACING.section} bg-background text-foreground z-40`}>
         <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-4">
           <div className="flex items-center justify-center py-20">
             <Loader2 className="w-8 h-8 animate-spin text-primary" />
@@ -71,25 +60,22 @@ export const Testimonials = () => {
     );
   }
 
-  // Error state or no testimonials
   if (error || testimonials.length === 0) {
     return (
-      <motion.section 
-        id="testimonials"
-        className="relative py-8 sm:py-10 md:py-12 lg:py-14 bg-background text-foreground z-40"
-      >
+      <motion.section id="testimonials" className="relative py-8 sm:py-10 md:py-12 lg:py-14 bg-background text-foreground z-40">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-4">
           <div className="text-center py-20">
             <p className="text-muted-foreground mb-4">
-              {error || (currentLang === 'ge' 
-                ? 'Keine Testimonials verfügbar. Bitte fügen Sie Testimonials im Admin-Panel hinzu.'
-                : 'No testimonials available. Please add testimonials in the admin panel.')}
+              {error || (currentLang === 'ge'
+                ? 'Keine Testimonials verfügbar.'
+                : 'No testimonials available.')}
             </p>
           </div>
         </div>
       </motion.section>
     );
   }
+
   return (
     <motion.section
       id="testimonials"
@@ -122,7 +108,7 @@ export const Testimonials = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8 max-w-6xl mx-auto mb-8 sm:mb-10 md:mb-12">
           {testimonials.map((testimonial, index) => (
-            <motion.div 
+            <motion.div
               key={testimonial._id || index}
               className="bg-card backdrop-blur-sm border border-border rounded-lg sm:rounded-xl p-5 sm:p-6 md:p-8 hover:border-primary/40 hover:shadow-lg transition-all duration-300"
               initial={{ opacity: 0, y: 50 }}
@@ -135,11 +121,9 @@ export const Testimonials = () => {
                   <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-primary text-primary" />
                 ))}
               </div>
-              
               <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-5 md:mb-6 leading-relaxed">
                 &ldquo;{testimonial.content}&rdquo;
               </p>
-              
               <div className="border-t border-border pt-3 sm:pt-4">
                 <p className="text-sm sm:text-base font-bold text-foreground">{testimonial.name}</p>
                 <p className="text-xs sm:text-sm text-primary">{testimonial.role}</p>
@@ -149,7 +133,7 @@ export const Testimonials = () => {
           ))}
         </div>
 
-        <motion.div 
+        <motion.div
           className="bg-card border border-primary/30 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 max-w-5xl mx-auto hover:border-primary/50 hover:shadow-lg transition-all duration-300"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -160,7 +144,7 @@ export const Testimonials = () => {
             <span className="inline-block px-3 py-1 bg-primary/20 text-primary text-xs sm:text-sm font-semibold rounded-full mb-3 sm:mb-4">
               {copy.caseStudy?.badge}
             </span>
-            <h3 
+            <h3
               className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-foreground"
               dangerouslySetInnerHTML={{ __html: copy.caseStudy?.title }}
             />
@@ -176,5 +160,3 @@ export const Testimonials = () => {
     </motion.section>
   );
 };
-
-

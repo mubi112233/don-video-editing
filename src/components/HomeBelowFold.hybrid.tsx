@@ -10,34 +10,49 @@ import { FinalCTA } from "@/components/FinalCTA.server";
 import { SPACING } from "@/lib/constants";
 import { fetchFAQ, fetchApiData, API_ENDPOINTS, normalizeLanguage, type PricingResponse } from "@/lib/api";
 
-export async function HomeBelowFold({ lang }: { lang: string }) {
-  const [faqs, blogData, servicesData, pricingData] = await Promise.all([
-    fetchFAQ(lang),
-    fetchApiData<{ blogs: any[] }>(API_ENDPOINTS.BLOGS, normalizeLanguage(lang)),
-    fetchApiData<{ services: any[] }>(API_ENDPOINTS.SERVICES, normalizeLanguage(lang)),
-    fetchApiData<PricingResponse>(API_ENDPOINTS.PRICING, normalizeLanguage(lang)),
+export async function HomeBelowFold({ lang, initialFaqs }: { lang: string; initialFaqs?: any[] }) {
+  const normalizedLang = normalizeLanguage(lang);
+
+  const [blogData, servicesData, pricingData, testimonialsData, howItWorksData, faqResult] = await Promise.all([
+    fetchApiData<{ blogs: any[] }>(API_ENDPOINTS.BLOGS, normalizedLang),
+    fetchApiData<{ services: any[] }>(API_ENDPOINTS.SERVICES, normalizedLang),
+    fetchApiData<PricingResponse>(API_ENDPOINTS.PRICING, normalizedLang),
+    fetchApiData<{ testimonials: any[] }>(API_ENDPOINTS.TESTIMONIALS, normalizedLang),
+    fetchApiData<{ steps: any[] }>(API_ENDPOINTS.HOW_IT_WORKS, normalizedLang),
+    initialFaqs ? Promise.resolve(null) : fetchFAQ(lang),
   ]);
 
-  const faqData = faqs?.faqs || [];
+  const faqData = initialFaqs ?? faqResult?.faqs ?? [];
+
   const initialPosts = Array.isArray((blogData as any)?.blogs)
-    ? (blogData as any).blogs.sort((a: any, b: any) => (a.order || 0) - (b.order || 0) || a.blogId - b.blogId)
+    ? [...(blogData as any).blogs].sort((a: any, b: any) => (a.order || 0) - (b.order || 0))
     : [];
+
   const initialServices = Array.isArray((servicesData as any)?.services)
     ? [...(servicesData as any).services].sort((a: any, b: any) => a.order - b.order)
-    : undefined;
-  const order = ['starter', 'professional', 'enterprise'];
+    : [];
+
+  const planOrder = ['starter', 'professional', 'enterprise'];
   const initialPlans = Array.isArray(pricingData?.plans)
-    ? [...pricingData.plans].sort((a, b) => order.indexOf(a.planKey) - order.indexOf(b.planKey))
+    ? [...pricingData.plans].sort((a, b) => planOrder.indexOf(a.planKey) - planOrder.indexOf(b.planKey))
     : undefined;
+
+  const initialTestimonials = Array.isArray((testimonialsData as any)?.testimonials)
+    ? [...(testimonialsData as any).testimonials].sort((a: any, b: any) => (a.order ?? 0) - (b.order ?? 0))
+    : [];
+
+  const initialSteps = Array.isArray((howItWorksData as any)?.steps)
+    ? [...(howItWorksData as any).steps].sort((a: any, b: any) => (a.stepNumber || 0) - (b.stepNumber || 0))
+    : [];
 
   return (
     <>
       <div className={SPACING.container}>
-        <HowItWorks />
-        <Services />
+        <HowItWorks initialSteps={initialSteps} />
+        <Services initialServices={initialServices} />
         <PricingDynamic lang={lang} initialPlans={initialPlans} />
         <ToolsIntegration />
-        <Testimonials />
+        <Testimonials initialTestimonials={initialTestimonials} />
         <Blog initialPosts={initialPosts} />
         <CaseStudies lang={lang} />
         <FAQInteractive faqs={faqData} lang={lang} />
@@ -46,5 +61,3 @@ export async function HomeBelowFold({ lang }: { lang: string }) {
     </>
   );
 }
-
-
