@@ -88,7 +88,7 @@ const organizationJsonLd = {
   },
   
   // Key contact email
-  email: "hello@don-video-editing.com",
+  email: "hello@don-video.com",
 };
 ```
 
@@ -446,7 +446,7 @@ const contactFormSchema = {
   contactType: "Customer Service",
   availableLanguage: ["en", "de"],
   telephone: "+49-XXX-XXXXXX",
-  email: "hello@don-video-editing.com",
+  email: "hello@don-video.com",
   areaServed: [
     { "@type": "Country", name: "Germany" },
     { "@type": "Country", name: "Austria" },

@@ -51,7 +51,7 @@ export default function OgImage() {
 
         {/* Domain */}
         <div style={{ position: "absolute", bottom: 60, right: 80, color: "rgba(255,255,255,0.4)", fontSize: 22 }}>
-          don-video-editing.com
+          don-video.com
         </div>
       </div>
     ),

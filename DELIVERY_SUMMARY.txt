@@ -23,7 +23,7 @@ SOLUTIONS IMPLEMENTED
    File: src/lib/site-url.ts
    Changes:
    - Hardened domain validation
-   - Rejects don-va.com, don-video-editing.com
+   - Rejects don-va.com, don-video.com
    - Forces production to www.don-video.com
    - Added production error logging
    Result: All pages now auto-generate correct canonical

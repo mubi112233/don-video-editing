@@ -203,7 +203,7 @@ export default function BookMeetingClient() {
                 <div className="h-1 w-full bg-gradient-to-r from-[hsl(45,100%,50%)] via-[hsl(30,100%,45%)] to-[hsl(45,100%,50%)]" />
                 <div className="p-2">
                   <iframe
-                    src="https://calendly.com/d/cyhx-wdw-b57?embed_domain=don-video-editing.com&embed_type=Inline"
+                    src="https://calendly.com/d/cyhx-wdw-b57?embed_domain=don-video.com&embed_type=Inline"
                     className="rounded-xl w-full"
                     style={{ minWidth: "100%", height: "620px", border: "none" }}
                     title="Book a meeting"

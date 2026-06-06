@@ -14,7 +14,7 @@ const envUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
 const isValidEnvUrl =
   envUrl &&
   !envUrl.includes("don-va.com") &&
-  !envUrl.includes("don-video-editing.com") &&
+  !envUrl.includes("don-video.com") &&
   (envUrl.includes("don-video.com") || !isProduction);
 
 export const SITE_URL = (isValidEnvUrl ? envUrl : DEFAULT_SITE_URL) as string;

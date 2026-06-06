@@ -44,7 +44,7 @@
 - [ ] View source (Ctrl+U / Cmd+Option+U)
 - [ ] Search for: `<link rel="canonical"`
 - [ ] Verify URL is: `https://www.don-video.com/en`
-- [ ] NOT: `don-va.com` or `don-video-editing.com` or `localhost`
+- [ ] NOT: `don-va.com` or `don-video.com` or `localhost`
 
 **German Page?**
 - [ ] Visit: https://www.don-video.com/de

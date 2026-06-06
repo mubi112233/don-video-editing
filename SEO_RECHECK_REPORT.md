@@ -21,7 +21,7 @@
 ```typescript
 // ✅ VERIFIED
 const PRODUCTION_SITE_URL = "https://www.don-video.com";
-const isValidEnvUrl = !envUrl.includes("don-va.com") && !envUrl.includes("don-video-editing.com");
+const isValidEnvUrl = !envUrl.includes("don-va.com") && !envUrl.includes("don-video.com");
 ```
 
 ---

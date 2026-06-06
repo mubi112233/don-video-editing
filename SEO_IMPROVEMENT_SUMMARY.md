@@ -5,7 +5,7 @@
 **Site Score**: 28/100 ❌
 **Google Indexation**: 0 pages indexed
 **Primary Issues**:
-1. Canonical tag pointed to wrong domain (don-video-editing.com)
+1. Canonical tag pointed to wrong domain (don-video.com)
 2. No robots.txt file
 3. Sitemap not properly configured
 4. Missing structured data (JSON-LD schemas)
@@ -23,7 +23,7 @@
 
 **What's fixed**:
 - Production domain locked to `https://www.don-video.com`
-- Validation rejects `don-va.com`, `don-video-editing.com`, any non-www versions
+- Validation rejects `don-va.com`, `don-video.com`, any non-www versions
 - Added production error logging if wrong domain detected
 - All pages auto-generate correct canonical tags
 
@@ -34,7 +34,7 @@
 const isValidEnvUrl =
   envUrl &&
   !envUrl.includes("don-va.com") &&
-  !envUrl.includes("don-video-editing.com") &&
+  !envUrl.includes("don-video.com") &&
   (envUrl.includes("don-video.com") || !isProduction);
 ```
 

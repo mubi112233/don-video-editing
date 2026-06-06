@@ -9,7 +9,7 @@ Your site had **zero pages indexed** due to a canonical domain pointing to the w
 ## ✅ What Was Fixed
 
 ### 1. Canonical Domain Issue (CRITICAL)
-**Problem**: Canonical tags pointed to wrong domains (don-va.com, don-video-editing.com)
+**Problem**: Canonical tags pointed to wrong domains (don-va.com, don-video.com)
 **Solution**: 
 - Hardened domain validation in `src/lib/site-url.ts`
 - Added production error logging

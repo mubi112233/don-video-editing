@@ -9,7 +9,7 @@ src/
 ├── lib/
 │   └── site-url.ts ✏️ MODIFIED
 │       ├── Hardened domain validation
-│       ├── Rejects don-va.com, don-video-editing.com
+│       ├── Rejects don-va.com, don-video.com
 │       ├── Forced production URL to www.don-video.com
 │       └── Added production error logging
 │

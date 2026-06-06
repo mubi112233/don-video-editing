@@ -28,7 +28,7 @@ Should see:
 
 NOT:
 - `don-va.com` ❌
-- `don-video-editing.com` ❌
+- `don-video.com` ❌
 - `localhost` ❌
 
 ### Fix 1: Check Environment Variables
@@ -106,7 +106,7 @@ Page should NOT redirect. If redirecting to wrong domain, check middleware.
 ## Problem: Duplicate Content Issues
 
 ### Check 1: Are multiple versions indexed?
-Search: `site:don-va.com` or `site:don-video-editing.com`
+Search: `site:don-va.com` or `site:don-video.com`
 
 If results show, old domains still indexed.
 

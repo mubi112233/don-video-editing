@@ -103,7 +103,7 @@ https://search.google.com/search-console/sitemaps?resource_id=https://www.don-vi
    - Should show indexed pages
 
 4. **Fix Any Domain Issues**
-   - If old domain (don-va.com, don-video-editing.com) still indexed:
+   - If old domain (don-va.com, don-video.com) still indexed:
      - Create 301 redirects to www.don-video.com
      - Or add redirect in middleware if still deployed
 

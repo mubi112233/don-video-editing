@@ -289,7 +289,7 @@ export default function ContactClient({ lang }: { lang: string }) {
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const formData = new FormData();
     formData.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? "8aff1902-6795-4608-ad79-be6702aa7f3a");
-    formData.append("to", "hello@don-video-editing.com");
+    formData.append("to", "hello@don-video.com");
     formData.append("subject", "New Video Editing Project Inquiry - don-video-editing");
     formData.append("companyName", data.companyName);
     formData.append("contactName", data.contactName);
@@ -385,7 +385,7 @@ export default function ContactClient({ lang }: { lang: string }) {
                 <Zap className="w-4 h-4 text-amber-500" />
                 {c.contactDirect}
               </h3>
-              <ContactCard icon={Mail} label="Email" value="hello@don-video-editing.com" href="mailto:hello@don-video-editing.com" />
+              <ContactCard icon={Mail} label="Email" value="hello@don-video.com" href="mailto:hello@don-video.com" />
               <ContactCard icon={Phone} label="Phone" value="+49 123 456 7890" href="tel:+491234567890" />
               <ContactCard icon={Calendar} label="Book a Call" value="Schedule on Calendly" href="https://calendly.com/d/cyhx-wdw-b57" />
               <ContactCard icon={MapPin} label="Location" value="Berlin, Germany" />

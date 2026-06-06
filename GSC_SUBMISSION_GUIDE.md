@@ -109,7 +109,7 @@ View page source and verify:
 <link rel="canonical" href="https://www.don-video.com/en" />
 ```
 
-Should always be `www.don-video.com`, never `don-va.com` or `don-video-editing.com`
+Should always be `www.don-video.com`, never `don-va.com` or `don-video.com`
 
 ### Duplicate Content?
 
