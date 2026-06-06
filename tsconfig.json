@@ -39,6 +39,7 @@
     "node_modules",
     "frontend",
     "mange-email",
-    "mange-email/**"
+    "mange-email/**",
+    ".next"
   ]
 }

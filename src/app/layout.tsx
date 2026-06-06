@@ -73,11 +73,6 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
       "max-video-preview": -1,
-      "max-snippet": -1,
-    },
-    other: {
-      "apple-mobile-web-app-capable": "yes",
-      "apple-mobile-web-app-status-bar-style": "black-translucent",
     },
   },
   openGraph: {
