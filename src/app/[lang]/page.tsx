@@ -53,39 +53,39 @@ export async function generateMetadata({
   const title =
     hero?.metaTitle ||
     (lang === "ge"
-      ? "don-webdesign – Premium Webdesign Agentur | Websites & Entwicklung"
-      : "don-webdesign – Premium Web Design Agency | Save 70% on Development");
+      ? "don-video-editing – Premium Video Editing Agentur"
+      : "don-video-editing – Premium Video Editing Services");
   const description =
     hero?.metaDescription ||
     (lang === "ge"
-      ? "Sparen Sie 70% bei der Webentwicklung mit premium Webdesign Services. Moderne Websites, die konvertieren. Native Qualität, garantierte Zufriedenheit."
-      : "Save 70% on web development with premium web design services. Modern websites that convert. Native quality, guaranteed satisfaction.");
+      ? "Professionelle Videobearbeitung mit Fokus auf Qualität und Storytelling. Von der Rohfassung bis zum fertigen Video – alles individuell auf Ihre Marke zugeschnitten."
+      : "Professional video editing services. High-quality cuts, color grading, motion graphics, and post-production. Fast turnaround, guaranteed satisfaction.");
   const keywordsFromHero = hero?.metaKeywords
     ? hero.metaKeywords.split(",").map((k: string) => k.trim())
     : null;
   const defaultDeKeywords = [
-    "Webdesign Agentur",
-    "Webentwicklung",
-    "Premium Websites",
-    "Website Design",
-    "Moderne Webdesign",
-    "Responsive Design",
-    "E-Commerce Website",
-    "Custom Web Entwicklung",
-    "UI/UX Design",
-    "Website Redesign",
+    "Video Editing Agentur",
+    "Videobearbeitung",
+    "Post-Produktion",
+    "Farbkorrektur",
+    "Motion Graphics",
+    "Social Media Video",
+    "Corporate Video",
+    "YouTube Video Editing",
+    "Video Content",
+    "don-video-editing",
   ];
   const defaultEnKeywords = [
-    "web design agency",
-    "web development",
-    "premium websites",
-    "website design services",
-    "modern web design",
-    "responsive design",
-    "ecommerce website",
-    "custom web development",
-    "UI/UX design",
-    "website redesign",
+    "video editing agency",
+    "professional video editing",
+    "post-production",
+    "color grading",
+    "motion graphics",
+    "social media video editing",
+    "corporate video editing",
+    "youtube video editing",
+    "video content creation",
+    "don-video-editing",
   ];
   const keywords = keywordsFromHero ?? (lang === "ge" ? defaultDeKeywords : defaultEnKeywords);
   const pathSeg = publicLocalePathSegment(lang);
@@ -105,7 +105,7 @@ export async function generateMetadata({
       description,
       url: canonical,
       type: "website",
-      siteName: "don-webdesign",
+      siteName: "don-video-editing",
       locale: lang === "ge" ? "de_DE" : "en_US",
       alternateLocale: lang === "ge" ? "en_US" : "de_DE",
       images: [
@@ -113,7 +113,7 @@ export async function generateMetadata({
           url: absoluteUrl("/opengraph-image"),
           width: 1200,
           height: 630,
-          alt: lang === "ge" ? "don-webdesign — Premium Webdesign Agentur" : "don-webdesign — Premium Web Design Services",
+          alt: lang === "ge" ? "don-video-editing — Premium Video Editing Agentur" : "don-video-editing — Premium Video Editing Services",
         },
       ],
     },
@@ -139,10 +139,10 @@ const pageJsonLd = (baseUrl: string) => ({
   en: {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "don-webdesign — Premium Web Design Services",
-    provider: { "@type": "Organization", name: "don-webdesign" },
+    name: "don-video-editing — Premium Video Editing Services",
+    provider: { "@type": "Organization", name: "don-video-editing" },
     description:
-      "Save 70% on web development with premium web design services. Modern websites that convert. Native quality, guaranteed satisfaction.",
+      "Professional video editing services. High-quality cuts, color grading, motion graphics, and post-production. Fast turnaround, guaranteed satisfaction.",
     areaServed: [
       { "@type": "Country", name: "Germany" },
       { "@type": "Country", name: "Austria" },
@@ -156,10 +156,10 @@ const pageJsonLd = (baseUrl: string) => ({
   ge: {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "don-webdesign — Premium Webdesign Services",
-    provider: { "@type": "Organization", name: "don-webdesign" },
+    name: "don-video-editing — Premium Video Editing Services",
+    provider: { "@type": "Organization", name: "don-video-editing" },
     description:
-      "Sparen Sie 70% bei der Webentwicklung mit premium Webdesign Services. Moderne Websites, die konvertieren. Native Qualität, garantierte Zufriedenheit.",
+      "Professionelle Videobearbeitungsservices. Hochwertige Schnitte, Farbkorrektur, Motion Graphics und Post-Produktion. Schnelle Lieferung, garantierte Zufriedenheit.",
     areaServed: [
       { "@type": "Country", name: "Germany" },
       { "@type": "Country", name: "Austria" },
@@ -190,7 +190,7 @@ export default async function HomeLangPage({
   // Fetch hero + FAQ in parallel server-side
   const [heroApiData, faqApiData] = await Promise.all([
     fetchApiData<{ hero: HeroData | HeroData[] }>(API_ENDPOINTS.HERO, normalizeLanguage(lang)),
-    fetchFAQ(normalizeLanguage(lang)),
+    fetchFAQ(lang),
   ]);
 
   let initialHero: HeroData | null = null;

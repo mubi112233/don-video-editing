@@ -20,7 +20,7 @@ const copy = {
   en: {
     badge: "Free Consultation",
     title: "Book Your Free Strategy Call",
-    subtitle: "Schedule a 15-minute call and discover how we can transform your online presence with premium web design.",
+    subtitle: "Schedule a 15-minute call and discover how we can transform your raw footage into professional video content.",
     whatTitle: "What to Expect",
     items: [
       { icon: Clock, title: "15-Minute Session", desc: "Quick, focused discussion about your needs" },
@@ -29,9 +29,9 @@ const copy = {
     ],
     discussTitle: "We'll Discuss",
     discuss: [
-      "Your current website & design challenges",
-      "How great design can elevate your brand",
-      "Custom solutions tailored to your business",
+      "Your current video content & editing challenges",
+      "How professional editing can elevate your brand",
+      "Custom video solutions tailored to your business",
       "Pricing & timeline options",
       "Next steps to get started",
     ],
@@ -41,18 +41,18 @@ const copy = {
       { value: "4.9/5", label: "Rating" },
     ],
     testimonials: [
-      { name: "Sarah Johnson", role: "CEO, TechStart Inc", text: "don-webdesign transformed our website completely. The design work elevated our online presence.", rating: 5 },
+      { name: "Sarah Johnson", role: "CEO, TechStart Inc", text: "don-video-editing transformed our video content completely. The editing elevated our brand presence.", rating: 5 },
       { name: "Michael Chen", role: "Founder, Digital Growth", text: "Best decision we made. Our brand visibility has grown significantly within weeks.", rating: 5 },
       { name: "Emma Davis", role: "Director, MarketPro", text: "Creative, professional, and detail-oriented. Couldn't ask for more from a design partner.", rating: 5 },
     ],
     testimonialsTitle: "What Our Clients Say",
-    testimonialsSubtitle: "See why brands trust don-webdesign",
+    testimonialsSubtitle: "See why brands trust don-video-editing",
     secure: "100% Secure & Confidential",
   },
   de: {
     badge: "Kostenlose Beratung",
     title: "Kostenloses Strategiegespräch buchen",
-    subtitle: "Vereinbaren Sie einen 15-minütigen Anruf und erfahren Sie, wie wir Ihre Online-Präsenz mit Premium-Webdesign transformieren können.",
+    subtitle: "Vereinbaren Sie einen 15-minütigen Anruf und erfahren Sie, wie wir Ihre Rohvideos in professionellen Content transformieren können.",
     whatTitle: "Was Sie erwartet",
     items: [
       { icon: Clock, title: "15-Minuten-Session", desc: "Kurzes, fokussiertes Gespräch über Ihre Bedürfnisse" },
@@ -61,9 +61,9 @@ const copy = {
     ],
     discussTitle: "Wir besprechen",
     discuss: [
-      "Ihre aktuelle Website & Design-Herausforderungen",
-      "Wie gutes Design Ihre Marke stärkt",
-      "Individuelle Lösungen für Ihr Unternehmen",
+      "Ihre aktuellen Video-Inhalte & Bearbeitungsherausforderungen",
+      "Wie professionelle Bearbeitung Ihre Marke stärkt",
+      "Individuelle Videolösungen für Ihr Unternehmen",
       "Preis- & Zeitplanoptionen",
       "Nächste Schritte zum Start",
     ],
@@ -73,12 +73,12 @@ const copy = {
       { value: "4.9/5", label: "Bewertung" },
     ],
     testimonials: [
-      { name: "Sarah Johnson", role: "CEO, TechStart Inc", text: "don-webdesign hat unsere Website komplett transformiert. Die Designarbeit hat unsere Online-Präsenz aufgewertet.", rating: 5 },
+      { name: "Sarah Johnson", role: "CEO, TechStart Inc", text: "don-video-editing hat unsere Video-Inhalte komplett transformiert. Die Bearbeitung hat unsere Markenpräsenz aufgewertet.", rating: 5 },
       { name: "Michael Chen", role: "Gründer, Digital Growth", text: "Beste Entscheidung, die wir getroffen haben. Unsere Markensichtbarkeit ist innerhalb von Wochen deutlich gestiegen.", rating: 5 },
       { name: "Emma Davis", role: "Direktorin, MarketPro", text: "Kreativ, professionell und detailorientiert. Mehr kann man von einem Designpartner nicht verlangen.", rating: 5 },
     ],
     testimonialsTitle: "Was unsere Kunden sagen",
-    testimonialsSubtitle: "Erfahren Sie, warum Marken don-webdesign vertrauen",
+    testimonialsSubtitle: "Erfahren Sie, warum Marken don-video-editing vertrauen",
     secure: "100% Sicher & Vertraulich",
   },
 };
@@ -203,7 +203,7 @@ export default function BookMeetingClient() {
                 <div className="h-1 w-full bg-gradient-to-r from-[hsl(45,100%,50%)] via-[hsl(30,100%,45%)] to-[hsl(45,100%,50%)]" />
                 <div className="p-2">
                   <iframe
-                    src="https://calendly.com/d/cyhx-wdw-b57?embed_domain=don-webdesign.com&embed_type=Inline"
+                    src="https://calendly.com/d/cyhx-wdw-b57?embed_domain=don-video-editing.com&embed_type=Inline"
                     className="rounded-xl w-full"
                     style={{ minWidth: "100%", height: "620px", border: "none" }}
                     title="Book a meeting"

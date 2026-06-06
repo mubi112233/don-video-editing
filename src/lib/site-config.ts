@@ -17,11 +17,11 @@ export interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  brandName: "don-webdesign",
+  brandName: "don-video-editing",
   brandMarkText: "D",
   defaultLocale: "en",
   apiBase: process.env.NEXT_PUBLIC_API_BASE || "https://api.don-va.com",
-  tenantId: process.env.NEXT_PUBLIC_TENANT_ID || "webdesign",
+  tenantId: process.env.NEXT_PUBLIC_TENANT_ID || "video-editing",
   routes: {
     bookMeeting: "/book-meeting",
     contact: "/contact",

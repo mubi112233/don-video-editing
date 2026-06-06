@@ -1,10 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Loader2 } from "lucide-react";
 import { getCopy } from "@/lib/copy";
 import { SPACING } from "@/lib/constants";
 import { localizedPath, siteConfig, localeUrlPrefix, type SiteLocale } from "@/lib/site-config";
-import { fetchCaseStudiesCardsData } from "@/lib/data-fetching";
+import { fetchCaseStudyCards, type CaseStudyCard } from "@/lib/api";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 const slugify = (title: string) =>
   title
@@ -14,27 +18,47 @@ const slugify = (title: string) =>
     .replace(/-+/g, "-")
     .trim();
 
-export async function CaseStudies({ lang, initialStudies }: { lang: string; initialStudies?: any[] }) {
-  // Always fetch fresh if initialStudies is empty or not provided
-  let studies = initialStudies && initialStudies.length > 0 ? initialStudies : [];
-  
-  if (studies.length === 0) {
-    studies = await fetchCaseStudiesCardsData(lang);
-    console.log(`[CaseStudies] fetched ${studies.length} studies for lang=${lang}`);
+export function CaseStudies({ lang, initialStudies }: { lang: string; initialStudies?: CaseStudyCard[] }) {
+  const pathname = usePathname();
+  const currentLang = pathname.startsWith("/ge") || pathname.startsWith("/de") ? "ge" : "en";
+  const effectiveLang = lang || currentLang;
+
+  const [studies, setStudies] = useState<CaseStudyCard[]>(initialStudies ?? []);
+  const [loading, setLoading] = useState(!initialStudies || initialStudies.length === 0);
+
+  const copy = getCopy(effectiveLang, "caseStudies");
+  const urlSeg = localeUrlPrefix((effectiveLang === "ge" ? "ge" : "en") as SiteLocale);
+
+  useEffect(() => {
+    if (initialStudies && initialStudies.length > 0) return;
+    setLoading(true);
+    fetchCaseStudyCards(effectiveLang)
+      .then((data) => {
+        setStudies(Array.isArray(data) ? data : []);
+      })
+      .catch(() => setStudies([]))
+      .finally(() => setLoading(false));
+  }, [effectiveLang, initialStudies]);
+
+  if (loading) {
+    return (
+      <section id="case-studies" className="relative py-8 sm:py-10 md:py-12 lg:py-14 bg-background">
+        <div className={`container mx-auto ${SPACING.container}`}>
+          <div className="flex items-center justify-center py-20">
+            <Loader2 className="w-8 h-8 animate-spin text-primary" />
+          </div>
+        </div>
+      </section>
+    );
   }
-  const copy = getCopy(lang, "caseStudies");
-  const urlSeg = localeUrlPrefix((lang === "ge" ? "ge" : "en") as SiteLocale);
 
   if (!studies.length) {
     return (
-      <section
-        id="case-studies"
-        className="relative py-8 sm:py-10 md:py-12 lg:py-14 bg-background"
-      >
+      <section id="case-studies" className="relative py-8 sm:py-10 md:py-12 lg:py-14 bg-background">
         <div className={`container mx-auto ${SPACING.container}`}>
           <div className="text-center py-20">
             <p className="text-muted-foreground mb-4">
-              {lang === "ge"
+              {effectiveLang === "ge"
                 ? "Keine Fallstudien verfügbar."
                 : "No case studies available."}
             </p>
@@ -122,23 +146,21 @@ export async function CaseStudies({ lang, initialStudies }: { lang: string; init
 
         <div className="mt-12 sm:mt-16 lg:mt-20 text-center">
           <p className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-6 sm:mb-8 max-w-2xl mx-auto">
-            {lang === "ge"
+            {effectiveLang === "ge"
               ? "Bereit, ähnliche Ergebnisse zu erzielen?"
               : "Ready to achieve similar results?"}
           </p>
           <Link
-            href={localizedPath((lang === "ge" ? "ge" : "en") as SiteLocale, siteConfig.routes.bookMeeting)}
+            href={localizedPath((effectiveLang === "ge" ? "ge" : "en") as SiteLocale, siteConfig.routes.bookMeeting)}
             className="inline-block w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-yellow-500 via-orange-500 to-amber-500 hover:from-purple-700 hover:via-pink-600 hover:to-orange-600 text-white font-bold text-base sm:text-lg rounded-2xl transition-all duration-300 hover:scale-105 shadow-xl shadow-purple-500/50 hover:shadow-2xl text-center border-0"
           >
             <span className="hidden sm:inline">
-              {lang === "ge" ? "Kostenlose Beratung buchen" : "Book a Free Consultation"}
+              {effectiveLang === "ge" ? "Kostenlose Beratung buchen" : "Book a Free Consultation"}
             </span>
-            <span className="sm:hidden">{lang === "ge" ? "Jetzt starten" : "Get Started"}</span>
+            <span className="sm:hidden">{effectiveLang === "ge" ? "Jetzt starten" : "Get Started"}</span>
           </Link>
         </div>
       </div>
     </section>
   );
 }
-
-

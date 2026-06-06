@@ -10,7 +10,7 @@ const getApiBase = () =>
   process.env.NEXT_PUBLIC_API_BASE || "https://api.don-va.com";
 
 const getTenantId = () => {
-  const tenantId = process.env.NEXT_PUBLIC_TENANT_ID || 'webdesign';
+  const tenantId = process.env.NEXT_PUBLIC_TENANT_ID || 'video-editing';
   if (typeof window !== 'undefined') {
     console.log('[API] Using Tenant ID:', tenantId);
   }
@@ -374,11 +374,47 @@ export interface CaseStudiesResponse {
   caseStudies: CaseStudy[];
 }
 
+export interface CaseStudyCard {
+  id: number | string;
+  title: string;
+  company: string;
+  industry: string;
+  challenge: string;
+  image: string;
+  stats: { costSaved: string; timeframe: string; vaCount: string };
+}
+
+const normalizeCaseStudyCards = (data: unknown): CaseStudyCard[] => {
+  const raw = (data as any)?.caseStudies ?? (data as any)?.case_studies ?? (Array.isArray(data) ? data : []);
+  if (!Array.isArray(raw)) return [];
+
+  return raw
+    .map((cs: any) => ({
+      id: cs.caseStudyId ?? cs.id ?? cs._id,
+      title: cs.title,
+      company: cs.company,
+      industry: cs.industry,
+      challenge: cs.challenge,
+      image: cs.image,
+      stats: cs.stats,
+    }))
+    .filter((study) => study.id != null && study.title);
+};
+
 export const fetchCaseStudies = (lang: string = 'en') => 
   fetchApiDataClient<CaseStudiesResponse>(API_ENDPOINTS.CASE_STUDIES, normalizeLanguage(lang));
 
 export const fetchCaseStudiesServer = (lang: string = 'en') =>
   fetchApiData<CaseStudiesResponse>(API_ENDPOINTS.CASE_STUDIES, normalizeLanguage(lang));
+
+export const fetchCaseStudyCards = (lang: string = 'en') =>
+  fetchApiDataClient<unknown>(API_ENDPOINTS.CASE_STUDIES, normalizeLanguage(lang))
+    .then((data) => normalizeCaseStudyCards(data));
+
+export const fetchCaseStudyCardsServer = async (lang: string = 'en') => {
+  const data = await fetchApiData<unknown>(API_ENDPOINTS.CASE_STUDIES, normalizeLanguage(lang));
+  return normalizeCaseStudyCards(data);
+};
 
 // Blog API
 export interface BlogPost {
@@ -388,12 +424,18 @@ export interface BlogPost {
   content: string;
   image: string;
   author: string;
-  publishedAt: string;
+  publishedAt?: string;
+  date?: string;
+  readTime?: string;
+  category?: string;
+  order?: number;
+  id?: number | string;
   slug: string;
+  sections?: { heading: string; details: string }[];
 }
 
 export interface BlogResponse {
-  posts: BlogPost[];
+  blogs: BlogPost[];
 }
 
 export const fetchBlog = (lang: string = 'en') => 

@@ -54,25 +54,25 @@ type FormValues = {
 const translations: Record<string, Record<string, string>> = {
   en: {
     badge: "Get In Touch",
-    title: "Let's Bring Your Vision to Life",
-    subtitle: "Tell us about your design project and we'll create stunning visuals that elevate your brand. Get a free consultation within 24 hours.",
+    title: "Let's Tell Your Story Through Video",
+    subtitle: "Tell us about your video project and we'll create compelling content that elevates your brand. Get a free consultation within 24 hours.",
     email: "Email Address",
     phone: "Phone Number",
     companyName: "Company Name",
     contactName: "Your Name",
-    projectTypeLabel: "Project Type",
+    projectTypeLabel: "Video Project Type",
     projectTypePlaceholder: "Select project type",
     projectTypeOtherLabel: "Describe your project",
-    projectTypeOtherPlaceholder: "What design work do you need?",
+    projectTypeOtherPlaceholder: "What video work do you need?",
     budgetRangeLabel: "Budget Range (EUR)",
-    budgetRangePlaceholder: "e.g. 5000 - 10000",
+    budgetRangePlaceholder: "e.g. 1000 - 5000",
     industryLabel: "Industry/Sector",
     timelineLabel: "Project Timeline",
     timelinePlaceholder: "Select timeline",
-    designRequirementsLabel: "Design Requirements",
-    designRequirementsPlaceholder: "Describe your design needs, brand style, target audience...",
+    designRequirementsLabel: "Video Requirements",
+    designRequirementsPlaceholder: "Describe your video needs, style, target audience, platform...",
     otherInfoLabel: "Additional Information",
-    otherInfoPlaceholder: "Anything else we should know about your project...",
+    otherInfoPlaceholder: "Raw footage details, references, anything else we should know...",
     submit: "Request Free Consultation",
     submitSending: "Sending...",
     emailRequired: "Email is required",
@@ -83,47 +83,47 @@ const translations: Record<string, Record<string, string>> = {
     contactNameRequired: "Your name is required",
     projectTypeRequired: "Please select project type",
     industryRequired: "Please select industry",
-    sideTitle: "Why Choose don-webdesign?",
+    sideTitle: "Why Choose don-video-editing?",
     stat1Value: "250+",
-    stat1Label: "Projects Delivered",
-    stat2Value: "2 Weeks",
+    stat1Label: "Videos Delivered",
+    stat2Value: "5 Days",
     stat2Label: "Avg. Turnaround",
     stat3Value: "4.9/5",
     stat3Label: "Client Satisfaction",
-    feature1: "Award-winning creative designers",
+    feature1: "Professional editors with 10+ years experience",
     feature2: "Unlimited revisions until perfect",
-    feature3: "Full ownership of all design files",
-    feature4: "DACH region design specialists",
+    feature3: "Full ownership of all edited files",
+    feature4: "DACH region video specialists",
     responseTime: "We respond within 2 hours during business hours",
     contactDirect: "Contact Directly",
     copied: "Copied!",
     formStep1: "Contact Info",
     formStep2: "Project Details",
     formStep3: "Requirements",
-    formHeaderTitle: "Start Your Project",
+    formHeaderTitle: "Start Your Video Project",
     formHeaderSubtitle: "Fill out the form below and we'll get back to you within 24 hours.",
   },
   ge: {
     badge: "Kontakt aufnehmen",
-    title: "Lassen Sie uns Ihre Vision zum Leben erwecken",
-    subtitle: "Erzählen Sie uns von Ihrem Design-Projekt und wir erstellen atemberaubende Visuals, die Ihre Marke aufwerten. Kostenlose Beratung innerhalb von 24 Stunden.",
+    title: "Erzählen Sie Ihre Geschichte durch Video",
+    subtitle: "Erzählen Sie uns von Ihrem Video-Projekt und wir erstellen überzeugende Inhalte, die Ihre Marke aufwerten. Kostenlose Beratung innerhalb von 24 Stunden.",
     email: "E-Mail-Adresse",
     phone: "Telefonnummer",
     companyName: "Firmenname",
     contactName: "Ihr Name",
-    projectTypeLabel: "Projekttyp",
+    projectTypeLabel: "Video-Projekttyp",
     projectTypePlaceholder: "Projekttyp wählen",
     projectTypeOtherLabel: "Projekt beschreiben",
-    projectTypeOtherPlaceholder: "Welche Design-Arbeit benötigen Sie?",
+    projectTypeOtherPlaceholder: "Welche Video-Arbeit benötigen Sie?",
     budgetRangeLabel: "Budget-Bereich (EUR)",
-    budgetRangePlaceholder: "z.B. 5000 - 10000",
+    budgetRangePlaceholder: "z.B. 1000 - 5000",
     industryLabel: "Branche/Sektor",
     timelineLabel: "Projektzeitraum",
     timelinePlaceholder: "Zeitraum wählen",
-    designRequirementsLabel: "Design-Anforderungen",
-    designRequirementsPlaceholder: "Beschreiben Sie Ihre Design-Bedürfnisse, Markenstil, Zielgruppe...",
+    designRequirementsLabel: "Video-Anforderungen",
+    designRequirementsPlaceholder: "Beschreiben Sie Ihre Video-Bedürfnisse, Stil, Zielgruppe, Plattform...",
     otherInfoLabel: "Zusätzliche Informationen",
-    otherInfoPlaceholder: "Was sollten wir noch über Ihr Projekt wissen...",
+    otherInfoPlaceholder: "Details zum Rohmaterial, Referenzen, was wir noch wissen sollten...",
     submit: "Kostenlose Beratung anfragen",
     submitSending: "Wird gesendet...",
     emailRequired: "E-Mail ist erforderlich",
@@ -134,16 +134,16 @@ const translations: Record<string, Record<string, string>> = {
     contactNameRequired: "Ihr Name ist erforderlich",
     projectTypeRequired: "Bitte wählen Sie den Projekttyp",
     industryRequired: "Bitte wählen Sie die Branche",
-    sideTitle: "Warum don-webdesign wählen?",
+    sideTitle: "Warum don-video-editing wählen?",
     stat1Value: "250+",
-    stat1Label: "Projekte geliefert",
-    stat2Value: "2 Wochen",
+    stat1Label: "Videos geliefert",
+    stat2Value: "5 Tage",
     stat2Label: "Ø Lieferzeit",
     stat3Value: "4.9/5",
     stat3Label: "Kundenzufriedenheit",
-    feature1: "Preisgekrönte Kreativdesigner",
+    feature1: "Professionelle Editoren mit 10+ Jahren Erfahrung",
     feature2: "Unbegrenzte Überarbeitungen bis perfekt",
-    feature3: "Volle Eigentumsrechte an allen Design-Dateien",
+    feature3: "Volle Eigentumsrechte an allen bearbeiteten Dateien",
     feature4: "Spezialisten für DACH-Region",
     responseTime: "Wir antworten innerhalb von 2 Stunden während der Geschäftszeiten",
     contactDirect: "Direkt kontaktieren",
@@ -151,21 +151,21 @@ const translations: Record<string, Record<string, string>> = {
     formStep1: "Kontakt",
     formStep2: "Projektdetails",
     formStep3: "Anforderungen",
-    formHeaderTitle: "Projekt starten",
+    formHeaderTitle: "Video-Projekt starten",
     formHeaderSubtitle: "Füllen Sie das Formular aus und wir melden uns innerhalb von 24 Stunden.",
   },
 };
 
 const projectTypeOptions = [
-  { value: "branding", label: "Branding / Logo Design" },
-  { value: "identity", label: "Complete Brand Identity" },
-  { value: "webdesign", label: "Website Design" },
-  { value: "print", label: "Print Design / Marketing Materials" },
-  { value: "packaging", label: "Packaging Design" },
-  { value: "social", label: "Social Media Graphics" },
-  { value: "uiux", label: "UI/UX Design" },
-  { value: "motion", label: "Motion Graphics / Video" },
-  { value: "illustration", label: "Custom Illustration" },
+  { value: "shortform", label: "Short-Form Content (Reels / TikTok / Shorts)" },
+  { value: "youtube", label: "YouTube Video Editing" },
+  { value: "corporate", label: "Corporate / Brand Video" },
+  { value: "commercial", label: "Commercial / Ad Video" },
+  { value: "documentary", label: "Documentary / Interview" },
+  { value: "eventrecap", label: "Event Recap / Highlights" },
+  { value: "colorgrading", label: "Color Grading Only" },
+  { value: "motionGraphics", label: "Motion Graphics / Animation" },
+  { value: "podcast", label: "Podcast Video Editing" },
   { value: "other", label: "Other" },
 ];
 
@@ -176,18 +176,18 @@ const industryOptions = [
   { value: "manufacturing", label: "Manufacturing" },
   { value: "consulting", label: "Consulting" },
   { value: "retail", label: "Retail / E-Commerce" },
-  { value: "logistics", label: "Logistics / Transport" },
-  { value: "energy", label: "Energy / Utilities" },
-  { value: "construction", label: "Construction" },
+  { value: "media", label: "Media / Entertainment" },
+  { value: "education", label: "Education / E-Learning" },
+  { value: "realestate", label: "Real Estate" },
   { value: "other", label: "Other" },
 ];
 
 const budgetRangeOptions = [
-  { value: "under2500", label: "Under €2,500" },
-  { value: "2500to5000", label: "€2,500 - €5,000" },
-  { value: "5000to10000", label: "€5,000 - €10,000" },
-  { value: "10000to25000", label: "€10,000 - €25,000" },
-  { value: "25000plus", label: "€25,000+" },
+  { value: "under500", label: "Under €500" },
+  { value: "500to1000", label: "€500 - €1,000" },
+  { value: "1000to3000", label: "€1,000 - €3,000" },
+  { value: "3000to7500", label: "€3,000 - €7,500" },
+  { value: "7500plus", label: "€7,500+" },
   { value: "flexible", label: "Flexible / Discuss" },
 ];
 
@@ -289,8 +289,8 @@ export default function ContactClient({ lang }: { lang: string }) {
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const formData = new FormData();
     formData.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? "8aff1902-6795-4608-ad79-be6702aa7f3a");
-    formData.append("to", "hello@don-webdesign.com");
-    formData.append("subject", "New Design Project Inquiry - don-webdesign");
+    formData.append("to", "hello@don-video-editing.com");
+    formData.append("subject", "New Video Editing Project Inquiry - don-video-editing");
     formData.append("companyName", data.companyName);
     formData.append("contactName", data.contactName);
     formData.append("email", data.email);
@@ -385,7 +385,7 @@ export default function ContactClient({ lang }: { lang: string }) {
                 <Zap className="w-4 h-4 text-amber-500" />
                 {c.contactDirect}
               </h3>
-              <ContactCard icon={Mail} label="Email" value="hello@don-webdesign.com" href="mailto:hello@don-webdesign.com" />
+              <ContactCard icon={Mail} label="Email" value="hello@don-video-editing.com" href="mailto:hello@don-video-editing.com" />
               <ContactCard icon={Phone} label="Phone" value="+49 123 456 7890" href="tel:+491234567890" />
               <ContactCard icon={Calendar} label="Book a Call" value="Schedule on Calendly" href="https://calendly.com/d/cyhx-wdw-b57" />
               <ContactCard icon={MapPin} label="Location" value="Berlin, Germany" />
@@ -426,7 +426,7 @@ export default function ContactClient({ lang }: { lang: string }) {
                 ))}
               </div>
               <p className="text-sm text-muted-foreground italic leading-relaxed">
-                &ldquo;don-webdesign transformed our brand identity completely. The team&apos;s creativity and attention to detail exceeded all our expectations.&rdquo;
+                &ldquo;don-video-editing transformed our video content completely. The team&apos;s creativity and attention to detail exceeded all our expectations.&rdquo;
               </p>
               <div className="flex items-center gap-3 pt-2 border-t border-border/30">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500/40 to-amber-500/10 border border-amber-500/30 flex items-center justify-center">
@@ -613,7 +613,7 @@ export default function ContactClient({ lang }: { lang: string }) {
                   </div>
                 </FormSection>
 
-                {/* Design Requirements */}
+                {/* Video Requirements */}
                 <FormSection step={3} icon={Users} title={c.formStep3}>
                   <div className="grid grid-cols-1 gap-4">
                     <div className="space-y-1.5">

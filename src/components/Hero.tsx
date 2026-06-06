@@ -42,16 +42,16 @@ export const Hero = ({ initialData }: { initialData?: HeroData | null }) => {
   // Fallback — no hardcoded stats, only text content
   const fallbackData = useMemo(() => isGe
     ? {
-        title: "don-webdesign: Websites that Convert",
-        subtitle: "Moderne Webdesign- und Entwicklungslösungen mit Fokus auf Geschwindigkeit, UX und Conversions. Von der Strategie bis zum Launch – alles individuell auf Ihre Marke zugeschnitten.",
+        title: "don-video-editing: Videos that Convert",
+        subtitle: "Professionelle Videobearbeitung mit Fokus auf Qualität, Storytelling und Conversions. Von der Rohfassung bis zum fertigen Video – alles individuell auf Ihre Marke zugeschnitten.",
         tagline: "Vertraut von 500+ Unternehmen weltweit",
         image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=900&fit=crop&q=80",
         ctaPrimary: "Kostenlose Beratung buchen",
         urgency: "Kostenloses umfassendes SEO-Audit inklusive",
       }
     : {
-        title: "don-webdesign: Websites that Convert",
-        subtitle: "Modern web design and development focused on speed, UX, and conversions. From strategy to launch — all tailored to your brand.",
+        title: "don-video-editing: Videos that Convert",
+        subtitle: "Professional video editing focused on quality, storytelling, and conversions. From raw footage to finished video — all tailored to your brand.",
         tagline: "Trusted by 500+ Businesses Worldwide",
         image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=900&fit=crop&q=80",
         ctaPrimary: "Book Free Consult",
@@ -101,7 +101,7 @@ export const Hero = ({ initialData }: { initialData?: HeroData | null }) => {
   return (
     <motion.section
       ref={ref}
-      className="relative min-h-screen flex items-center bg-background text-foreground overflow-hidden pt-16 sm:pt-20 md:pt-0"
+      className="relative min-h-screen flex items-center text-foreground overflow-hidden pt-16 sm:pt-20 md:pt-0"
       style={{ opacity }}
     >
       {loading && (
@@ -110,13 +110,41 @@ export const Hero = ({ initialData }: { initialData?: HeroData | null }) => {
         </div>
       )}
 
-      {/* Background - uses CSS variables for light/dark mode */}
+      {/* Animated gradient background */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-background via-muted to-background/80 z-0"
+        className="absolute inset-0 bg-gradient-to-br from-purple-100/60 via-pink-100/60 to-orange-100/60 dark:from-purple-950/40 dark:via-pink-950/40 dark:to-orange-950/40 z-0"
         style={{ y }}
       />
 
-      <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-8 sm:py-12 md:py-16 lg:py-20 relative z-10">
+      {/* Floating orbs */}
+      <motion.div
+        className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-purple-400/40 via-pink-400/40 to-purple-400/20 rounded-full blur-3xl dark:from-purple-600/30 dark:via-pink-600/30 dark:to-purple-600/10"
+        animate={{ y: [0, -30, 0], x: [0, 20, 0], scale: [1, 1.1, 1], rotate: [0, 90, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-pink-400/40 via-orange-400/40 to-pink-400/20 rounded-full blur-3xl dark:from-pink-600/30 dark:via-orange-600/30 dark:to-pink-600/10"
+        animate={{ y: [0, 30, 0], x: [0, -20, 0], scale: [1, 1.15, 1], rotate: [0, -90, 0] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      />
+      <motion.div
+        className="absolute top-1/2 left-1/3 w-64 h-64 bg-gradient-to-br from-orange-400/30 via-purple-400/30 to-orange-400/10 rounded-full blur-3xl dark:from-orange-600/25 dark:via-purple-600/25 dark:to-orange-600/5"
+        animate={{ y: [0, -20, 0], x: [0, 15, 0], scale: [1, 1.2, 1], rotate: [0, 180, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+      />
+
+      {/* Floating particles */}
+      {[...Array(6)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full opacity-60"
+          style={{ top: `${20 + i * 15}%`, left: `${10 + i * 12}%` }}
+          animate={{ y: [0, -100, 0], x: [0, 50, 0], opacity: [0.3, 0.8, 0.3], scale: [1, 1.5, 1] }}
+          transition={{ duration: 8 + i * 2, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }}
+        />
+      ))}
+
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-4 py-8 sm:py-12 md:py-16 lg:py-20 relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-center">
           {/* Left Content */}
           <motion.div
@@ -130,50 +158,59 @@ export const Hero = ({ initialData }: { initialData?: HeroData | null }) => {
               stiffness: 100
             }}
           >
-            {/* Trust Badge - Gold Style like Frontend */}
+            {/* Trust Badge */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8, y: 20 }}
-              animate={isInView ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.8, y: 20 }}
-              transition={{
-                duration: 0.8,
-                delay: 0.4,
-                type: "spring",
-                stiffness: 120,
-                damping: 20
-              }}
-              className="inline-block mb-3 sm:mb-4 md:mb-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-[hsl(45,100%,50%)]/10 border border-[hsl(45,100%,50%)]/30 rounded-full text-[hsl(45,100%,50%)] text-xs sm:text-sm font-semibold hover:bg-[hsl(45,100%,50%)]/20 hover:scale-105 transition-all duration-300 cursor-default"
+              className="inline-block mb-3 sm:mb-4 md:mb-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-yellow-500 via-orange-500 to-amber-500 text-white rounded-full text-xs sm:text-sm font-semibold shadow-lg shadow-purple-500/50 relative overflow-hidden"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              whileHover={{ scale: 1.05 }}
             >
-              <motion.span
-                animate={{
-                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-                className="bg-gradient-to-r from-[hsl(45,100%,50%)] via-[hsl(30,100%,45%)] to-[hsl(45,100%,50%)] bg-[length:200%_100%] bg-clip-text text-transparent"
-              >
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0"
+                animate={{ x: ['-200%', '200%'] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              />
+              <span className="relative z-10 flex items-center gap-2">
+                <motion.span animate={{ rotate: [0, 360] }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }}>✨</motion.span>
                 {tagline}
-              </motion.span>
+              </span>
             </motion.div>
 
-            {/* Title with Gold Gradient like Frontend */}
-            <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-5 md:mb-6 leading-[1.15] sm:leading-[1.12] md:leading-[1.1]">
+            {/* Title */}
+            <motion.h1
+              className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-extrabold mb-4 sm:mb-5 md:mb-6 leading-[1.15] sm:leading-[1.12] md:leading-[1.1] tracking-tight text-gray-900 dark:text-gray-50"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
               {title?.includes(':') ? (
                 <>
-                  <span className="text-foreground">{title.split(':')[0]}:</span>
-                  <span className="bg-gradient-to-r from-[hsl(45,100%,50%)] to-[hsl(30,100%,45%)] bg-clip-text text-transparent">{title.split(':')[1]}</span>
+                  <span>{title.split(':')[0]}:</span>{' '}
+                  <span className="relative inline-block">
+                    <span className="gradient-heading dark:from-purple-400 dark:via-pink-400 dark:to-orange-400">{title.split(':')[1]}</span>
+                    <motion.span
+                      className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-yellow-500 via-orange-500 to-amber-500 rounded-full dark:from-purple-400 dark:via-pink-400 dark:to-orange-400"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: 0.8, delay: 1 }}
+                    />
+                  </span>
                 </>
               ) : (
-                <span className="bg-gradient-to-r from-[hsl(45,100%,50%)] to-[hsl(30,100%,45%)] bg-clip-text text-transparent">{title}</span>
+                <span className="gradient-heading dark:from-purple-400 dark:via-pink-400 dark:to-orange-400">{title}</span>
               )}
-            </h1>
+            </motion.h1>
 
             {/* Subtitle */}
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed max-w-xl">
+            <motion.p
+              className="text-base sm:text-lg md:text-xl lg:text-xl text-gray-700 mb-6 sm:mb-7 md:mb-8 leading-relaxed max-w-xl font-normal dark:text-gray-300"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
               {subtitle}
-            </p>
+            </motion.p>
 
             {/* CTA Section */}
             <motion.div
@@ -182,42 +219,47 @@ export const Hero = ({ initialData }: { initialData?: HeroData | null }) => {
               transition={{ duration: 0.6, delay: 0.6 }}
               className="space-y-3"
             >
-              <Button
-                size="lg"
-                onClick={() => router.push(localizedPath((currentLang === "ge" ? "ge" : "en") as SiteLocale, siteConfig.routes.bookMeeting))}
-                className="group relative w-full sm:w-auto text-sm sm:text-base md:text-lg px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 h-auto font-bold bg-[hsl(45,100%,50%)] text-[hsl(30,85%,10%)] hover:bg-[hsl(45,100%,45%)] transform hover:scale-[1.06] hover:-translate-y-2 transition-all duration-400 cursor-pointer overflow-hidden rounded-xl border-2 border-transparent hover:border-[hsl(45,100%,50%)]/50 shadow-lg shadow-[hsl(45,100%,50%)]/30"
+              <motion.div
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
               >
-                {/* Gold shimmer effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
-                  animate={{
-                    x: ["-150%", "150%"]
-                  }}
-                  transition={{
-                    duration: 2.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    repeatDelay: 1.5
-                  }}
-                  aria-hidden="true"
-                />
-
-                <span className="relative z-10 flex items-center justify-center gap-2.5">
-                  <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
-                  <span className="font-semibold group-hover:tracking-wide transition-all duration-300">{ctaPrimary}</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-2 group-hover:scale-110 transition-all duration-300" aria-hidden="true" />
-                </span>
-              </Button>
+                <Button
+                  size="lg"
+                  onClick={() => router.push(localizedPath((currentLang === "ge" ? "ge" : "en") as SiteLocale, siteConfig.routes.bookMeeting))}
+                  className="bg-gradient-to-r from-yellow-500 via-orange-500 to-amber-500 dark:from-purple-500 dark:via-pink-400 dark:to-orange-400 text-white hover:from-purple-700 hover:via-pink-600 hover:to-orange-600 dark:hover:from-purple-600 dark:hover:via-pink-500 dark:hover:to-orange-500 px-8 py-6 rounded-xl font-bold text-lg transition-all relative overflow-hidden group shadow-2xl shadow-purple-500/50 hover:shadow-pink-500/60 border-2 border-white/20 dark:border-white/10"
+                >
+                  <motion.span
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                    initial={{ x: '-100%' }}
+                    animate={{ x: '200%' }}
+                    transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 0.5, ease: "linear" }}
+                  />
+                  <span className="flex items-center gap-3 relative z-10">
+                    <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 2, repeat: Infinity }}>
+                      <Sparkles className="w-6 h-6" aria-hidden="true" />
+                    </motion.div>
+                    {ctaPrimary}
+                    <motion.div animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
+                      <ArrowRight className="w-6 h-6" aria-hidden="true" />
+                    </motion.div>
+                  </span>
+                </Button>
+              </motion.div>
 
               {/* Urgency indicator */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.8 }}
-                className="flex items-center justify-center sm:justify-start gap-2 text-xs sm:text-sm text-white/70"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1 }}
+                className="flex items-center justify-center sm:justify-start gap-2 text-xs sm:text-sm text-muted-foreground dark:text-white/80"
               >
-                <CheckCircle className="w-4 h-4 text-[hsl(45,100%,55%)]" aria-hidden="true" />
-                <span className="font-medium">{urgency}</span>
+                <motion.div animate={{ scale: [1, 1.3, 1], rotate: [0, 180, 360] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>
+                  <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500" aria-hidden="true" />
+                </motion.div>
+                <span className="font-semibold">{urgency}</span>
               </motion.div>
             </motion.div>
           </motion.div>
@@ -247,7 +289,7 @@ export const Hero = ({ initialData }: { initialData?: HeroData | null }) => {
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-                className="bg-[hsl(45,100%,55%)] text-[#3D2817] px-3 py-2 sm:px-4 sm:py-2.5 rounded-full shadow-lg border-2 border-[#5C3D2A] flex items-center gap-1.5 sm:gap-2"
+                className="relative bg-gradient-to-br from-[hsl(217,91%,65%)] via-[hsl(217,91%,60%)] to-[hsl(217,91%,55%)] dark:from-[hsl(217,91%,70%)] dark:via-[hsl(217,91%,65%)] dark:to-[hsl(217,91%,60%)] text-white px-3 py-2 sm:px-4 sm:py-2.5 rounded-full shadow-[0_10px_30px_-5px_rgba(59,130,246,0.4)] dark:shadow-[0_10px_30px_-5px_rgba(59,130,246,0.6)] border border-white/20 dark:border-white/30 flex items-center gap-1.5 sm:gap-2 backdrop-blur-sm"
               >
                 <Award className="w-3 h-3 sm:w-4 sm:h-4" aria-hidden="true" />
                 <span className="text-[10px] sm:text-xs font-bold whitespace-nowrap">{isGe ? "Top Bewertet" : "Top Rated"}</span>
@@ -256,11 +298,11 @@ export const Hero = ({ initialData }: { initialData?: HeroData | null }) => {
 
             {/* 3D tilt container */}
             <motion.div
-              className="relative rounded-xl md:rounded-2xl overflow-hidden border-2 border-[hsl(45,100%,55%)]/30 group shadow-[0_30px_120px_-30px_hsl(45,100%,55%/0.45)]"
-              whileHover={{ rotateX: -6, rotateY: 10 }}
+              className="relative rounded-xl md:rounded-2xl overflow-hidden p-1 group shadow-[0_30px_120px_-30px_rgba(168,85,247,0.8)]"
+              whileHover={{ rotateX: -6, rotateY: 10, scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 220, damping: 20 }}
-              style={{ transformStyle: "preserve-3d" }}
+              style={{ transformStyle: "preserve-3d", background: "linear-gradient(135deg, #a855f7, #ec4899, #f97316)", padding: "4px" }}
             >
               {/* Image */}
               <motion.div style={{ transform: "translateZ(20px)" }}>
@@ -275,21 +317,21 @@ export const Hero = ({ initialData }: { initialData?: HeroData | null }) => {
                 />
               </motion.div>
 
-              {/* Gold gradient veil */}
+              {/* Brand gradient veil */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-[hsl(45,100%,55%/0.15)] via-transparent to-[hsl(45,100%,55%/0.15)]"
+                className="absolute inset-0 bg-gradient-to-br from-purple-500/30 via-pink-500/20 to-orange-500/30"
                 style={{ transform: "translateZ(30px)" }}
               />
 
               {/* Concentric rings for depth */}
               <motion.div
-                className="absolute -top-16 -left-16 w-64 h-64 rounded-full bg-gradient-to-br from-[hsl(45,100%,55%/0.25)] to-[hsl(30,100%,45%/0.25)] blur-3xl"
+                className="absolute -top-16 -left-16 w-64 h-64 rounded-full bg-gradient-to-br from-cyan-400/40 to-purple-500/40 blur-3xl"
                 style={{ transform: "translateZ(60px)" }}
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               />
               <motion.div
-                className="absolute -bottom-16 -right-16 w-72 h-72 rounded-full bg-gradient-to-tr from-[hsl(30,100%,45%/0.2)] to-[hsl(45,100%,55%/0.2)] blur-3xl"
+                className="absolute -bottom-16 -right-16 w-72 h-72 rounded-full bg-gradient-to-tr from-pink-500/40 to-orange-500/40 blur-3xl"
                 style={{ transform: "translateZ(40px)" }}
                 animate={{ scale: [1, 1.08, 1] }}
                 transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
@@ -301,7 +343,7 @@ export const Hero = ({ initialData }: { initialData?: HeroData | null }) => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 1 }}
-                  className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 md:bottom-6 md:left-6 md:right-6 backdrop-blur-xl bg-gradient-to-br from-[#2A1B0E] via-[#3D2817] to-[#4A3320] border border-[hsl(45,100%,55%)]/50 rounded-xl p-4 sm:p-5 shadow-2xl"
+                  className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 md:bottom-6 md:left-6 md:right-6 backdrop-blur-xl bg-gradient-to-br from-purple-900/90 via-pink-900/90 to-orange-900/90 dark:from-purple-900/80 dark:via-pink-900/80 dark:to-orange-900/80 border-2 border-purple-500/50 dark:border-purple-400/40 rounded-xl p-4 sm:p-5 shadow-2xl shadow-purple-500/50 dark:shadow-purple-900/60"
                   style={{ transform: "translateZ(80px)" }}
                 >
                   <div className={`grid gap-3 sm:gap-4 md:gap-6`} style={{ gridTemplateColumns: `repeat(${statsItems.length}, 1fr)` }}>
@@ -318,7 +360,7 @@ export const Hero = ({ initialData }: { initialData?: HeroData | null }) => {
                           animate={{ y: [-3, 3, -3] }}
                           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }}
                         >
-                          <Icon className="w-4 h-4 sm:w-5 sm:h-5 mx-auto mb-1 text-[hsl(45,100%,55%)]" aria-hidden="true" />
+                          <Icon className="w-4 h-4 sm:w-5 sm:h-5 mx-auto mb-1 text-[hsl(217,91%,75%)]" aria-hidden="true" />
                           <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white">{value}</div>
                           <div className="text-[9px] sm:text-[10px] md:text-xs text-white/70 font-medium">{label}</div>
                         </motion.div>
@@ -331,45 +373,21 @@ export const Hero = ({ initialData }: { initialData?: HeroData | null }) => {
 
             {/* Animated decorative elements */}
             <motion.div
-              className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-[hsl(45,100%,55%)]/20 rounded-full blur-3xl"
-              animate={{
-                scale: [1, 1.3, 1],
-                opacity: [0.2, 0.5, 0.2]
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
+              className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-[hsl(330,81%,60%)]/20 dark:bg-[hsl(330,81%,60%)]/30 rounded-full blur-3xl"
+              animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.5, 0.2] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               aria-hidden="true"
             />
             <motion.div
-              className="absolute -bottom-3 -left-3 sm:-bottom-4 sm:-left-4 w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 bg-[hsl(45,100%,55%)]/10 rounded-full blur-3xl"
-              animate={{
-                scale: [1, 1.4, 1],
-                opacity: [0.1, 0.3, 0.1]
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 0.5
-              }}
+              className="absolute -bottom-3 -left-3 sm:-bottom-4 sm:-left-4 w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 bg-[hsl(217,91%,60%)]/10 dark:bg-[hsl(217,91%,60%)]/20 rounded-full blur-3xl"
+              animate={{ scale: [1, 1.4, 1], opacity: [0.1, 0.3, 0.1] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
               aria-hidden="true"
             />
             <motion.div
-              className="absolute top-1/2 -left-4 w-12 h-12 sm:w-16 sm:h-16 bg-[hsl(45,100%,55%)]/20 rounded-full blur-2xl"
-              animate={{
-                x: [-10, 10, -10],
-                scale: [1, 1.2, 1],
-                opacity: [0.1, 0.2, 0.1]
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1
-              }}
+              className="absolute top-1/2 -left-4 w-12 h-12 sm:w-16 sm:h-16 bg-[hsl(217,91%,60%)]/10 dark:bg-[hsl(217,91%,60%)]/20 rounded-full blur-2xl"
+              animate={{ x: [-10, 10, -10], scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
               aria-hidden="true"
             />
           </motion.div>

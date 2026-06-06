@@ -2,9 +2,9 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "don-webdesign - Premium Web Design Services",
-    short_name: "don-webdesign",
-    description: "Save 70% on web development with premium web design services. Modern websites that convert. Native quality, guaranteed satisfaction.",
+    name: "don-video-editing - Premium Video Editing Services",
+    short_name: "don-video-editing",
+    description: "Professional video editing services. High-quality cuts, color grading, motion graphics, and post-production. Fast turnaround, guaranteed satisfaction.",
     start_url: "/",
     display: "standalone",
     background_color: "#3D2817",
@@ -29,7 +29,7 @@ export default function manifest(): MetadataRoute.Manifest {
     orientation: "portrait",
     scope: "/",
     lang: "en",
-    categories: ["design", "business", "productivity", "web"],
+    categories: ["video", "business", "productivity", "media"],
   };
 }
 

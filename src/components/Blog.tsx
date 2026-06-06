@@ -51,29 +51,28 @@ export const Blog = ({ initialPosts }: { initialPosts?: BlogPost[] }) => {
   const pathname = usePathname();
   const currentLang = pathname.startsWith("/ge") || pathname.startsWith("/de") ? "ge" : "en";
   const [posts, setPosts] = useState<BlogPost[]>(initialPosts ?? []);
-  const [loading, setLoading] = useState(!initialPosts);
+  const [loading, setLoading] = useState(initialPosts === undefined || initialPosts.length === 0);
   const [error, setError] = useState<string | null>(null);
 
   const copy = getCopy(currentLang, "blog");
 
   useEffect(() => {
-    if (initialPosts) return;
+    // Skip client fetch only if server provided actual posts
+    if (initialPosts && initialPosts.length > 0) return;
     const fetchBlogs = async () => {
       try {
         setLoading(true);
         setError(null);
         const data = await fetchBlog(currentLang);
-
         if (!data) throw new Error("Failed to fetch blogs");
-
-        const fetchedBlogs = Array.isArray((data as any).blogs)
-          ? (data as any).blogs.sort(
-              (a: BlogPost, b: BlogPost) =>
+        const rawBlogs = data.blogs ?? (data as any).posts ?? [];
+        const fetched = Array.isArray(rawBlogs)
+          ? ([...rawBlogs] as BlogPost[]).sort(
+              (a, b) =>
                 (a.order || 0) - (b.order || 0) || (a.blogId || 0) - (b.blogId || 0)
             )
           : [];
-
-        setPosts(fetchedBlogs);
+        setPosts(fetched as BlogPost[]);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to load blogs");
         setPosts([]);
@@ -81,42 +80,31 @@ export const Blog = ({ initialPosts }: { initialPosts?: BlogPost[] }) => {
         setLoading(false);
       }
     };
-
     fetchBlogs();
-  }, [currentLang, initialPosts]);
+  }, [currentLang]);
 
   if (loading) {
     return (
-      <motion.section
-        id="blog"
-        className={`relative ${SPACING.section} bg-background overflow-hidden`}
-      >
+      <motion.section id="blog" className={`relative ${SPACING.section} bg-background overflow-hidden`}>
         <div className={`container mx-auto ${SPACING.container}`}>
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="w-8 h-8 animate-spin text-[hsl(270,80%,75%)]" />
+            <Loader2 className="w-8 h-8 animate-spin text-primary" />
           </div>
         </div>
       </motion.section>
     );
   }
 
-  const validPosts = posts.filter((post) => {
-    const id = post.blogId ?? post.id;
-    return id != null && !Number.isNaN(Number(id));
-  });
+  // Accept posts with any id field — don't filter out posts that only have _id
+  const validPosts = posts.filter((post) => post.title);
 
   if (error || validPosts.length === 0) {
     return (
-      <motion.section
-        id="blog"
-        className={`relative ${SPACING.section} bg-background overflow-hidden`}
-      >
+      <motion.section id="blog" className={`relative ${SPACING.section} bg-background overflow-hidden`}>
         <div className={`container mx-auto ${SPACING.container}`}>
           <div className="text-center py-20">
             <p className="text-muted-foreground">
-              {error || (currentLang === "ge"
-                ? "Keine Blog-Artikel verfügbar."
-                : "No blog posts available.")}
+              {error || (currentLang === "ge" ? "Keine Blog-Artikel verfügbar." : "No blog posts available.")}
             </p>
           </div>
         </div>
@@ -138,21 +126,22 @@ export const Blog = ({ initialPosts }: { initialPosts?: BlogPost[] }) => {
 
       <div className={`container mx-auto ${SPACING.container} relative z-10`}>
         <div className="mb-12 sm:mb-16 lg:mb-20 text-left max-w-5xl">
-          <span className="inline-block px-4 py-2 bg-primary text-primary-foreground text-sm font-bold rounded-full mb-4 shadow-md">
-            {copy.badge}
+          <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-yellow-500 via-orange-500 to-amber-500 text-white text-xs sm:text-sm font-bold rounded-full mb-3 sm:mb-4 shadow-[0_8px_24px_-6px_rgba(168,85,247,0.6)] border border-white/30 backdrop-blur-sm relative overflow-hidden animate-pulse">
+            <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 opacity-50"></span>
+            <span className="relative z-10">{copy.badge}</span>
           </span>
           <h2
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 text-foreground leading-tight"
+            className="section-heading"
             dangerouslySetInnerHTML={{ __html: decodeHtml(copy.heading) }}
           />
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-4xl leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl lg:text-xl text-muted-foreground max-w-4xl leading-relaxed dark:text-white/90">
             {copy.description}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-7xl mx-auto">
           {validPosts.map((post: BlogPost, index: number) => {
-            const postId = post.blogId ?? post.id;
+            const postId = post.blogId ?? post.id ?? index;
             const postSlug = post.slug || `${slugify(post.title)}-${postId}`;
             return (
             <motion.div

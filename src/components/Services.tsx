@@ -29,7 +29,7 @@ const sectionCopy = {
 
 export const Services = ({ initialServices }: { initialServices?: Service[] }) => {
   const [services, setServices] = useState<Service[]>(initialServices ?? []);
-  const [loading, setLoading] = useState(!initialServices);
+  const [loading, setLoading] = useState(!initialServices || initialServices.length === 0);
   const [error, setError] = useState<string | null>(null);
   const pathname = usePathname();
   const currentLang = pathname.startsWith('/ge') || pathname.startsWith('/de') ? 'ge' : 'en';
@@ -37,7 +37,7 @@ export const Services = ({ initialServices }: { initialServices?: Service[] }) =
   const copy = sectionCopy[currentLang as keyof typeof sectionCopy] || sectionCopy.en;
 
   useEffect(() => {
-    if (initialServices) return;
+    if (initialServices && initialServices.length > 0) return;
     const fetchServicesData = async () => {
       try {
         setLoading(true);
@@ -102,13 +102,14 @@ export const Services = ({ initialServices }: { initialServices?: Service[] }) =
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <span className="inline-block px-2.5 sm:px-3 md:px-4 lg:px-5 py-1 sm:py-1.5 md:py-2 lg:py-2.5 bg-primary text-primary-foreground text-xs sm:text-sm md:text-base font-semibold rounded-full mb-2 sm:mb-3 md:mb-4 shadow-lg">
-            {copy.badge}
+          <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 md:px-5 md:py-2.5 bg-gradient-to-r from-yellow-500 via-orange-500 to-amber-500 text-white text-xs sm:text-sm md:text-base font-semibold rounded-full mb-3 sm:mb-4 shadow-[0_8px_24px_-6px_rgba(168,85,247,0.6)] border border-white/30 backdrop-blur-sm relative overflow-hidden animate-pulse">
+            <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 opacity-50"></span>
+            <span className="relative z-10">{copy.badge}</span>
           </span>
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 sm:mb-3 md:mb-4 lg:mb-5 px-1 sm:px-2 text-foreground">
+          <h2 className="section-heading">
             {copy.heading}
           </h2>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl leading-relaxed px-1 sm:px-2">
+          <p className="text-base sm:text-lg md:text-lg lg:text-xl text-muted-foreground max-w-3xl leading-relaxed px-2 dark:text-white/90">
             {copy.subheading}
           </p>
         </motion.div>

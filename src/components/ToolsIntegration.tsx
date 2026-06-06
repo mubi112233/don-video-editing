@@ -57,14 +57,21 @@ export const ToolsIntegration = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-foreground">
+          <motion.span
+            className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-yellow-500 via-orange-500 to-amber-500 text-white text-xs sm:text-sm font-bold rounded-full mb-3 sm:mb-4 shadow-[0_8px_24px_-6px_rgba(168,85,247,0.6)] border border-white/30 backdrop-blur-sm relative overflow-hidden animate-pulse"
+            whileHover={{ scale: 1.05 }}
+          >
+            <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 opacity-50"></span>
+            <span className="relative z-10">{isGe ? "Unsere Tools" : "Our Tools"}</span>
+          </motion.span>
+          <h2 className="section-heading">
             {isGe ? (
-              <>Expertise in führenden <span className="text-primary">Design-Tools</span></>
+              <>Expertise in führenden <span className="gradient-heading">Design-Tools</span></>
             ) : (
-              <>Expertise in Leading <span className="text-primary">Design Tools</span></>
+              <>Expertise in Leading <span className="gradient-heading">Design Tools</span></>
             )}
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl dark:text-white/90">
             {isGe
               ? "Unser Team beherrscht alle gängigen Design-Software und liefert in jedem Format, das Sie benötigen."
               : "Our team masters all popular design software and delivers in any format you need."}
@@ -83,37 +90,40 @@ export const ToolsIntegration = () => {
             {tools.map((tool, index) => (
               <motion.div
                 key={tool.name}
-                className="bg-card border border-border rounded-lg p-3 sm:p-4 text-center hover:border-primary/50 hover:shadow-lg transition-all duration-300 group"
+                className="relative bg-card/80 backdrop-blur-sm border border-border rounded-xl p-3 sm:p-4 text-center hover:border-[hsl(var(--brand-blue))]/40 hover:shadow-[0_12px_35px_-10px_hsl(217_91%_60%/0.15)] transition-all duration-300 group overflow-hidden"
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.04, ease: "easeOut" }}
+                transition={{ duration: 0.3, delay: index * 0.05, ease: "easeOut" }}
+                whileHover={{ y: -4, scale: 1.03, transition: { type: "spring", stiffness: 400, damping: 25 } }}
               >
-                <p className="text-sm sm:text-base font-semibold text-foreground group-hover:text-primary transition-colors">
+                <div className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--brand-blue))]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <p className="text-sm sm:text-base font-bold text-foreground dark:text-white transition-colors relative z-10">
                   {tool.name}
                 </p>
-                <p className="text-[10px] sm:text-xs text-muted-foreground mt-1">
+                <span className="inline-block mt-2 px-2 py-0.5 text-[10px] sm:text-xs font-semibold bg-gradient-to-r from-[hsl(var(--brand-blue))]/10 to-[hsl(var(--brand-blue))]/10 text-[hsl(var(--brand-blue))] rounded-full border border-[hsl(var(--brand-blue))]/20 relative z-10">
                   {getCategory(tool.category)}
-                </p>
+                </span>
               </motion.div>
             ))}
           </motion.div>
 
           {/* Callout */}
           <motion.div
-            className="bg-card border border-border rounded-lg sm:rounded-xl p-5 sm:p-6 md:p-8 text-center"
+            className="relative bg-card/80 backdrop-blur-xl border border-border rounded-2xl p-6 sm:p-8 md:p-10 text-center overflow-hidden group hover:border-[hsl(var(--brand-blue))]/40 hover:shadow-[0_20px_50px_-15px_hsl(217_91%_60%/0.15)] transition-all duration-300"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
           >
-            <p className="text-base sm:text-lg text-foreground mb-3 sm:mb-4">
-              <span className="font-bold text-primary">
+            <div className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--brand-blue))]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[hsl(var(--brand-blue))]/30 to-transparent"></div>
+            <p className="text-base sm:text-lg md:text-xl font-bold text-foreground dark:text-white mb-3 sm:mb-4 relative z-10">
+              <span className="bg-gradient-to-r from-[hsl(var(--brand-blue))] to-[hsl(var(--brand-blue))] bg-clip-text text-transparent">
                 {isGe ? "Benötigen Sie ein spezielles Format?" : "Need a specific file format?"}
-              </span>{" "}
-              {isGe ? "Einfach fragen." : "Just ask."}
+              </span>{" "}{isGe ? "Einfach fragen." : "Just ask."}
             </p>
-            <p className="text-sm sm:text-base text-muted-foreground">
+            <p className="text-sm sm:text-base text-muted-foreground dark:text-white/90 leading-relaxed relative z-10">
               {isGe
                 ? "Wir liefern in jedem Format – von druckfertigen PDFs bis zu web-optimierten Assets."
                 : "We deliver in any format — from print-ready PDFs to web-optimized assets."}

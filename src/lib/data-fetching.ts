@@ -7,7 +7,7 @@ import { fetchAPI, API_ENDPOINTS, normalizeLanguage } from './api';
 import type { Service, FAQItem } from './api';
 
 export interface CaseStudyCard {
-  id: number;
+  id: number | string;
   title: string;
   company: string;
   industry: string;
@@ -165,11 +165,15 @@ export async function fetchCaseStudiesCardsData(lang: string): Promise<CaseStudy
   try {
     const normalizedLang = normalizeLanguage(lang);
     const response = await fetchAPI(`${API_ENDPOINTS.CASE_STUDIES}?lang=${normalizedLang}`);
+    if (!response.ok) return [];
     const data = await response.json();
-    if (!Array.isArray(data?.caseStudies)) return [];
-    return data.caseStudies
+    console.log('[fetchCaseStudiesCardsData] raw response keys:', Object.keys(data || {}));
+    // API may return { caseStudies: [] } or { case_studies: [] } or array directly
+    const raw = data?.caseStudies ?? data?.case_studies ?? (Array.isArray(data) ? data : []);
+    if (!Array.isArray(raw) || raw.length === 0) return [];
+    return raw
       .map((cs: Record<string, unknown>) => ({
-        id: (cs.caseStudyId ?? cs._id ?? cs.id) as number,
+        id: (cs.caseStudyId ?? cs.id ?? cs._id) as string | number,
         title: cs.title as string,
         company: cs.company as string,
         industry: cs.industry as string,
@@ -177,8 +181,7 @@ export async function fetchCaseStudiesCardsData(lang: string): Promise<CaseStudy
         image: cs.image as string,
         stats: cs.stats as CaseStudyCard['stats'],
       }))
-      .filter((cs: CaseStudyCard) => cs.id !== undefined && cs.id !== null)
-      .sort((a: CaseStudyCard, b: CaseStudyCard) => (a.id as number) - (b.id as number));
+      .filter((cs: any) => cs.id != null && cs.title);
   } catch (error) {
     console.error('Error fetching case studies:', error);
     return [];

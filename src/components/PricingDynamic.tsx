@@ -18,7 +18,7 @@ export const PricingDynamic = ({ lang, initialPlans }: { lang: string; initialPl
   const router = useRouter();
   const [vaCount, setVaCount] = useState<number>(1);
   const [plans, setPlans] = useState<any[]>(initialPlans ?? []);
-  const [loading, setLoading] = useState<boolean>(!initialPlans);
+  const [loading, setLoading] = useState<boolean>(!initialPlans || initialPlans.length === 0);
   const [error, setError] = useState<string | null>(null);
 
   const t = (
@@ -102,7 +102,7 @@ export const PricingDynamic = ({ lang, initialPlans }: { lang: string; initialPl
   }, [lang, pathLang]);
 
   useEffect(() => {
-    if (initialPlans) return; // skip client fetch if server already provided data
+    if (initialPlans && initialPlans.length > 0) return; // skip client fetch if server already provided data
 
     const fetchPricingData = async () => {
       try {

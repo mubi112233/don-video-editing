@@ -61,7 +61,7 @@ export async function generateMetadata({
 
   if (!post) return {};
 
-  const title = `${post.title} | don-webdesign`;
+  const title = `${post.title} | don-video-editing`;
   const description = post.excerpt?.substring(0, 160) || "";
   const seg = publicLocalePathSegment(lang);
   const pathAfterLocale = `blog/${slug}`;
@@ -79,7 +79,7 @@ export async function generateMetadata({
       type: "article",
       locale: seg === "de" ? "de_DE" : "en_US",
       alternateLocale: seg === "de" ? "en_US" : "de_DE",
-      siteName: "don-webdesign",
+      siteName: "don-video-editing",
       images: post.image ? [{ url: post.image, width: 1200, height: 630, alt: post.title }] : [],
     },
     twitter: {

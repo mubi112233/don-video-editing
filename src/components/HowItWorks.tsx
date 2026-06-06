@@ -10,26 +10,26 @@ const iconMap = { Calendar, UserCheck, Rocket, LineChart };
 
 const sectionCopy = {
   en: {
-    badge: "Web Design in 4 Steps",
+    badge: "Video Editing in 4 Steps",
     heading: "How It Works",
-    description: "From discovery to launch in weeks—not months. Clear milestones and measurable results.",
+    description: "From raw footage to finished video in days — not weeks. Clear milestones and measurable results.",
   },
   ge: {
-    badge: "Webdesign in 4 Schritten",
+    badge: "Videobearbeitung in 4 Schritten",
     heading: "So funktioniert's",
-    description: "Von der Entdeckung bis zum Launch in Wochen – nicht Monaten. Klare Meilensteine und messbare Ergebnisse.",
+    description: "Von Rohmaterial zum fertigen Video in Tagen – nicht Wochen. Klare Meilensteine und messbare Ergebnisse.",
   },
 };
 
 export const HowItWorks = ({ initialSteps }: { initialSteps?: Step[] }) => {
   const [steps, setSteps] = useState<Step[]>(initialSteps ?? []);
-  const [loading, setLoading] = useState(!initialSteps);
+  const [loading, setLoading] = useState(!initialSteps || initialSteps.length === 0);
   const pathname = usePathname();
   const currentLang = pathname.startsWith('/ge') || pathname.startsWith('/de') ? 'ge' : 'en';
   const copy = sectionCopy[currentLang as keyof typeof sectionCopy] || sectionCopy.en;
 
   useEffect(() => {
-    if (initialSteps) return;
+    if (initialSteps && initialSteps.length > 0) return;
     const fetchSteps = async () => {
       try {
         const data = await fetchHowItWorks(currentLang);
@@ -72,13 +72,17 @@ export const HowItWorks = ({ initialSteps }: { initialSteps?: Step[] }) => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <span className="inline-block px-4 py-2 bg-primary text-primary-foreground text-sm font-semibold rounded-full mb-4 shadow-lg">
-            {copy.badge}
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-foreground">
-            How It <span className="text-primary">Works</span>
+          <motion.span
+            className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-yellow-500 via-orange-500 to-amber-500 text-white text-xs sm:text-sm font-bold rounded-full mb-3 sm:mb-4 shadow-[0_8px_24px_-6px_rgba(168,85,247,0.6)] border border-white/30 backdrop-blur-sm relative overflow-hidden animate-pulse"
+            whileHover={{ scale: 1.05 }}
+          >
+            <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 opacity-30"></span>
+            <span className="relative z-10">{copy.badge}</span>
+          </motion.span>
+          <h2 className="section-heading">
+            How It <span className="gradient-heading">Works</span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed dark:text-white/90">
             {copy.description}
           </p>
         </motion.div>

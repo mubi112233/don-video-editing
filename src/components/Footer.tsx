@@ -21,10 +21,10 @@ export const Footer: React.FC = () => {
         { label: "Contact Us", href: "/en/contact" },
       ],
       serviceLinks: [
-        { label: "Logo & Branding", href: "/en/#services" },
-        { label: "Brand Identity", href: "/en/#services" },
-        { label: "Web Design", href: "/en/#services" },
-        { label: "Print Design", href: "/en/#services" },
+        { label: "Video Editing", href: "/en/#services" },
+        { label: "Color Grading", href: "/en/#services" },
+        { label: "Motion Graphics", href: "/en/#services" },
+        { label: "Social Media Videos", href: "/en/#services" },
         { label: "Pricing Plans", href: "/en/#pricing" },
       ],
       resourceLinks: [
@@ -34,7 +34,7 @@ export const Footer: React.FC = () => {
         { label: "FAQ", href: "/en/#faq" },
         { label: "Testimonials", href: "/en/#testimonials" },
       ],
-      tagline: "Premium web design agency creating modern, high-converting websites. Save 70% on development with native quality results.",
+      tagline: "Professional video editing agency creating engaging, high-converting video content. Fast turnaround with native quality results.",
       rights: "All rights reserved.",
     },
     ge: {
@@ -47,10 +47,10 @@ export const Footer: React.FC = () => {
         { label: "Kontakt", href: "/de/contact" },
       ],
       serviceLinks: [
-        { label: "Logo & Branding", href: "/de/#services" },
-        { label: "Corporate Design", href: "/de/#services" },
-        { label: "Webdesign", href: "/de/#services" },
-        { label: "Print Design", href: "/de/#services" },
+        { label: "Videobearbeitung", href: "/de/#services" },
+        { label: "Farbkorrektur", href: "/de/#services" },
+        { label: "Motion Graphics", href: "/de/#services" },
+        { label: "Social Media Videos", href: "/de/#services" },
         { label: "Preispläne", href: "/de/#pricing" },
       ],
       resourceLinks: [
@@ -60,7 +60,7 @@ export const Footer: React.FC = () => {
         { label: "Häufige Fragen", href: "/de/#faq" },
         { label: "Kundenstimmen", href: "/de/#testimonials" },
       ],
-      tagline: "Premium Webdesign Agentur für moderne, konvertierende Websites. Sparen Sie 70% bei der Entwicklung mit nativer Qualität.",
+      tagline: "Professionelle Video Editing Agentur für moderne, überzeugende Video-Inhalte. Schnelle Lieferung mit nativer Qualität.",
       rights: "Alle Rechte vorbehalten.",
     },
   };
@@ -134,7 +134,7 @@ export const Footer: React.FC = () => {
 
         {/* Bottom bar */}
         <div className="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
-          <p>© {new Date().getFullYear()} don-webdesign. {c.rights}</p>
+          <p>© {new Date().getFullYear()} don-video-editing. {c.rights}</p>
           <div className="flex items-center gap-4">
             <Link href={localizedPath(lang, siteConfig.routes.blog)} className="hover:text-primary transition-colors">Blog</Link>
             <Link href={localizedPath(lang, siteConfig.routes.contact)} className="hover:text-primary transition-colors">{isGe ? "Kontakt" : "Contact"}</Link>

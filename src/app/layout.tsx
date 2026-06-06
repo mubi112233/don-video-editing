@@ -32,41 +32,33 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "don-webdesign - Premium Web Design Services | Save 70% on Development",
-    template: "%s | don-webdesign",
+    default: "don-video-editing - Premium Video Editing Services",
+    template: "%s | don-video-editing",
   },
   description:
-    "Save 70% on web development with premium web design services. Modern websites that convert. Native quality, guaranteed satisfaction. Book your free consultation today.",
+    "Professional video editing services. High-quality cuts, color grading, motion graphics, and post-production. Fast turnaround, guaranteed satisfaction. Book your free consultation today.",
   keywords: [
-    "web design agency",
-    "web development",
-    "premium websites",
-    "website design services",
-    "modern web design",
-    "responsive design",
-    "ecommerce website",
-    "custom web development",
-    "UI/UX design",
-    "website redesign",
-    "webdesign agentur",
-    "website erstellen",
-    "professionelle websites",
-    "wordpress design",
-    "nextjs development",
-    "react websites",
-    "conversion optimization",
-    "don-webdesign",
+    "video editing service",
+    "professional video editor",
+    "video post-production",
+    "color grading",
+    "motion graphics",
+    "video production",
+    "youtube video editing",
+    "social media video editing",
+    "corporate video editing",
+    "don-video-editing",
   ],
-  authors: [{ name: "don-webdesign", url: SITE_URL }],
-  creator: "don-webdesign",
-  publisher: "don-webdesign",
+  authors: [{ name: "don-video-editing", url: SITE_URL }],
+  creator: "don-video-editing",
+  publisher: "don-video-editing",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   verification: {
-    google: "owA83i5dtMBx2-hhn9CBrI0wGgffRYCV2ux3FXUGG04",
+    google: "NilMqJxre6z_IfCF2MhSaELbgq16YxDG_WzE6e36ChU",
   },
   robots: {
     index: true,
@@ -81,20 +73,20 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: "don-webdesign",
-    title: "don-webdesign - Premium Web Design Services | Save 70% on Development",
+    siteName: "don-video-editing",
+    title: "don-video-editing - Premium Video Editing Services",
     description:
-      "Save 70% on web development with premium web design services. Modern websites that convert. Native quality, guaranteed satisfaction.",
+      "Professional video editing services. High-quality cuts, color grading, motion graphics, and post-production. Fast turnaround, guaranteed satisfaction.",
     url: absoluteUrl("/en"),
     locale: "en_US",
     alternateLocale: ["de_DE"],
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "don-webdesign — Premium Web Design Services" }],
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "don-video-editing — Premium Video Editing Services" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "don-webdesign - Premium Web Design Services | Save 70% on Development",
+    title: "don-video-editing - Premium Video Editing Services",
     description:
-      "Save 70% on web development with premium web design services. Modern websites that convert. Native quality, guaranteed satisfaction.",
+      "Professional video editing services. High-quality cuts, color grading, motion graphics, and post-production. Fast turnaround, guaranteed satisfaction.",
     images: [absoluteUrl("/opengraph-image")],
   },
   // Per-page alternates are set in each route's generateMetadata.
@@ -104,11 +96,11 @@ export const metadata: Metadata = {
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "don-webdesign",
+  name: "don-video-editing",
   url: SITE_URL,
   logo: absoluteUrl("/opengraph-image"),
   description:
-    "Premium web design agency specializing in modern websites, web development, UI/UX design, and digital solutions for businesses worldwide.",
+    "Professional video editing agency specializing in post-production, color grading, motion graphics, and video content for businesses worldwide.",
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer service",
@@ -120,26 +112,26 @@ const organizationJsonLd = {
     { "@type": "Country", name: "Switzerland" },
     { "@type": "Place", name: "Worldwide" },
   ],
-  sameAs: ["https://linkedin.com/company/don-webdesign", "https://twitter.com/don-webdesign", "https://instagram.com/don-webdesign"],
+  sameAs: ["https://linkedin.com/company/don-video-editing", "https://twitter.com/don-video-editing", "https://instagram.com/don-video-editing"],
 };
 
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "don-webdesign",
+  name: "don-video-editing",
   url: SITE_URL,
   inLanguage: ["en-US", "de-DE"],
-  publisher: { "@type": "Organization", name: "don-webdesign" },
+  publisher: { "@type": "Organization", name: "don-video-editing" },
 };
 
-// Service schema for web design services
+// Service schema for video editing services
 const serviceJsonLd = {
   "@context": "https://schema.org",
   "@type": "Service",
-  serviceType: "Web Design Services",
+  serviceType: "Video Editing Services",
   provider: {
     "@type": "Organization",
-    name: "don-webdesign",
+    name: "don-video-editing",
     url: SITE_URL,
   },
   areaServed: [
@@ -150,65 +142,65 @@ const serviceJsonLd = {
   ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Web Design Services",
+    name: "Video Editing Services",
     itemListElement: [
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Custom Website Design",
-          description: "Modern, responsive websites tailored to your brand",
+          name: "Professional Video Editing",
+          description: "High-quality cuts and edits tailored to your brand",
         },
       },
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "E-Commerce Development",
-          description: "High-converting online stores with seamless checkout",
+          name: "Color Grading",
+          description: "Cinematic color grading for a professional look",
         },
       },
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "UI/UX Design",
-          description: "User-centered interface design for web and mobile",
+          name: "Motion Graphics",
+          description: "Engaging animations and motion graphics for your videos",
         },
       },
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Website Redesign",
-          description: "Transform your existing site into a conversion machine",
+          name: "Social Media Video Editing",
+          description: "Short-form videos optimized for YouTube, Instagram, TikTok",
         },
       },
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Website Maintenance",
-          description: "Ongoing support and optimization for peak performance",
+          name: "Corporate Video Production",
+          description: "Professional videos for business, training, and marketing",
         },
       },
     ],
   },
 };
 
-// LocalBusiness schema for Web Design Agency
+// LocalBusiness schema for Video Editing Agency
 const localBusinessJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  name: "don-webdesign",
+  name: "don-video-editing",
   url: SITE_URL,
   logo: absoluteUrl("/opengraph-image"),
   image: absoluteUrl("/opengraph-image"),
-  description: "Premium web design agency specializing in modern websites, UI/UX design, and digital solutions for businesses",
+  description: "Professional video editing agency specializing in post-production, color grading, motion graphics, and video content",
   sameAs: [
-    "https://linkedin.com/company/don-webdesign",
-    "https://twitter.com/don-webdesign",
-    "https://instagram.com/don-webdesign",
+    "https://linkedin.com/company/don-video-editing",
+    "https://twitter.com/don-video-editing",
+    "https://instagram.com/don-video-editing",
   ],
   priceRange: "€€",
   openingHoursSpecification: [
@@ -239,14 +231,14 @@ export default async function RootLayout({
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         
         {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y41TLVJ50H" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7B48DKJTC" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-Y41TLVJ50H');
+              gtag('config', 'G-G7B48DKJTC');
             `,
           }}
         />

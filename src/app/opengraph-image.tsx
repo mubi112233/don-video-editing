@@ -25,18 +25,18 @@ export default function OgImage() {
           <div style={{ width: 56, height: 56, background: "#FFBC42", borderRadius: 14, display: "flex", alignItems: "center", justifyContent: "center" }}>
             <span style={{ color: "#3D2817", fontWeight: 900, fontSize: 28 }}>D</span>
           </div>
-          <span style={{ color: "#fff", fontWeight: 800, fontSize: 32 }}>don-webdesign</span>
+          <span style={{ color: "#fff", fontWeight: 800, fontSize: 32 }}>don-video-editing</span>
         </div>
 
         {/* Headline */}
         <h1 style={{ color: "#fff", fontSize: 64, fontWeight: 800, lineHeight: 1.1, margin: "0 0 24px 0", maxWidth: 800 }}>
           Premium{" "}
-          <span style={{ color: "#FFBC42" }}>Web Design Services</span>
+          <span style={{ color: "#FFBC42" }}>Video Editing Services</span>
         </h1>
 
         {/* Subtitle */}
         <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 28, margin: "0 0 48px 0", maxWidth: 700 }}>
-          Save 70% on Web Development. Modern Websites That Convert. Native Quality, Guaranteed.
+          Professional Post-Production. Color Grading, Motion Graphics & More. Fast Turnaround, Guaranteed.
         </p>
 
         {/* Stats */}
@@ -51,7 +51,7 @@ export default function OgImage() {
 
         {/* Domain */}
         <div style={{ position: "absolute", bottom: 60, right: 80, color: "rgba(255,255,255,0.4)", fontSize: 22 }}>
-          don-webdesign.com
+          don-video-editing.com
         </div>
       </div>
     ),

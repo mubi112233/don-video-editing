@@ -14,19 +14,19 @@ export async function generateMetadata({
   const { lang: raw } = await params;
   const seg = publicLocalePathSegment(raw);
   const isDE = seg === "de";
-  const title = isDE ? "Kontakt — Webdesign Agentur" : "Contact — Web Design Agency";
+  const title = isDE ? "Kontakt — Video Editing Agentur" : "Contact — Video Editing Agency";
   const description = isDE
-    ? "Kontaktieren Sie don-webdesign für eine kostenlose Beratung zu Webdesign, Webentwicklung und Website-Projekten."
-    : "Contact don-webdesign for a free consultation about web design, web development, and website projects.";
+    ? "Kontaktieren Sie don-video-editing für eine kostenlose Beratung zu Videobearbeitung, Post-Produktion und Videoproduktion."
+    : "Contact don-video-editing for a free consultation about video editing, post-production, and video content.";
   const { languages } = hreflangAlternates("contact");
   const canonical = absoluteUrl(`/${seg}/contact`);
 
   return {
-    title: { absolute: `${title} | don-webdesign` },
+    title: { absolute: `${title} | don-video-editing` },
     description,
     keywords: isDE
-      ? ["kontakt don-webdesign", "webdesign anfrage", "webentwicklung beratung", "website projekt"]
-      : ["contact don-webdesign", "web design inquiry", "web development consultation", "website agency contact"],
+      ? ["kontakt don-video-editing", "videobearbeitung anfrage", "post-produktion beratung", "video projekt"]
+      : ["contact don-video-editing", "video editing inquiry", "post-production consultation", "video agency contact"],
     alternates: {
       canonical,
       languages,
@@ -38,8 +38,8 @@ export async function generateMetadata({
       type: "website",
       locale: isDE ? "de_DE" : "en_US",
       alternateLocale: isDE ? "en_US" : "de_DE",
-      siteName: "don-webdesign",
-      images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "don-webdesign Web Design Agency" }],
+      siteName: "don-video-editing",
+      images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "don-video-editing Video Editing Agency" }],
     },
     twitter: {
       card: "summary_large_image",

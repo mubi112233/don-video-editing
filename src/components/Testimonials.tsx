@@ -20,7 +20,7 @@ interface Testimonial {
 
 export const Testimonials = ({ initialTestimonials }: { initialTestimonials?: Testimonial[] }) => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>(initialTestimonials ?? []);
-  const [loading, setLoading] = useState(!initialTestimonials);
+  const [loading, setLoading] = useState(!initialTestimonials || initialTestimonials.length === 0);
   const [error, setError] = useState<string | null>(null);
 
   const pathname = usePathname();
@@ -28,7 +28,7 @@ export const Testimonials = ({ initialTestimonials }: { initialTestimonials?: Te
   const copy = getCopy(currentLang, 'testimonials');
 
   useEffect(() => {
-    if (initialTestimonials) return;
+    if (initialTestimonials && initialTestimonials.length > 0) return;
     const fetchTestimonialsData = async () => {
       try {
         setLoading(true);
@@ -93,15 +93,16 @@ export const Testimonials = ({ initialTestimonials }: { initialTestimonials?: Te
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <motion.span
-            className="inline-block px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-primary text-primary-foreground text-xs sm:text-sm font-bold rounded-full mb-2 sm:mb-3 md:mb-4 shadow-lg"
+            className="inline-block px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-gradient-to-r from-yellow-500 via-orange-500 to-amber-500 text-white text-xs sm:text-sm font-bold rounded-full mb-3 sm:mb-4 shadow-[0_8px_24px_-6px_rgba(168,85,247,0.6)] border border-white/30 backdrop-blur-sm relative overflow-hidden animate-pulse"
             whileHover={{ scale: 1.05 }}
           >
-            {"Client Success Stories"}
+            <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 opacity-50"></span>
+            <span className="relative z-10">{"Client Success Stories"}</span>
           </motion.span>
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 sm:mb-3 md:mb-4 text-foreground leading-tight">
+          <h2 className="section-heading">
             {copy.heading?.replace(/<[^>]*>/g, '') || "Trusted by Growing Businesses"}
           </h2>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+          <p className="text-base sm:text-lg md:text-lg lg:text-xl text-muted-foreground max-w-2xl leading-relaxed dark:text-white/90">
             {copy.subheading || "See how businesses like yours have transformed their online presence with our premium web design services."}
           </p>
         </motion.div>
@@ -141,17 +142,17 @@ export const Testimonials = ({ initialTestimonials }: { initialTestimonials?: Te
           transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
         >
           <div className="text-left">
-            <span className="inline-block px-3 py-1 bg-primary/20 text-primary text-xs sm:text-sm font-semibold rounded-full mb-3 sm:mb-4">
+            <span className="inline-block px-3 py-1 bg-gradient-to-r from-yellow-500 via-orange-500 to-amber-500 text-white text-xs sm:text-sm font-semibold rounded-full mb-3 sm:mb-4 shadow-lg shadow-purple-500/50">
               {copy.caseStudy?.badge}
             </span>
             <h3
-              className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-foreground"
+              className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-gray-900 dark:text-white"
               dangerouslySetInnerHTML={{ __html: copy.caseStudy?.title }}
             />
-            <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-5 sm:mb-6 leading-relaxed max-w-3xl">
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-5 sm:mb-6 leading-relaxed max-w-3xl dark:text-white/90">
               {copy.caseStudy?.description}
             </p>
-            <Button size="lg" className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4 bg-primary text-primary-foreground hover:bg-primary/90">
+            <Button size="lg" className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-yellow-500 via-orange-500 to-amber-500 text-white hover:from-purple-700 hover:via-pink-600 hover:to-orange-600 transition-all duration-300 hover:scale-105 font-semibold border-0 shadow-lg shadow-purple-500/50">
               {copy.caseStudy?.cta}
             </Button>
           </div>

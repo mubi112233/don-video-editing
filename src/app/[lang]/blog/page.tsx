@@ -16,31 +16,31 @@ export async function generateMetadata({
 
   const isDe = seg === "de";
   const title = isDe
-    ? "Webdesign Blog — Tipps & Best Practices | don-webdesign"
-    : "Web Design Blog — Tips & Best Practices | don-webdesign";
+    ? "Video Editing Blog — Tipps & Best Practices | don-video-editing"
+    : "Video Editing Blog — Tips & Best Practices | don-video-editing";
   const description = isDe
-    ? "Einblicke, Tipps und Best Practices zu Webdesign, Webentwicklung und Conversion-Optimierung — auf Deutsch."
-    : "Insights, tips, and best practices for web design, web development, and conversion optimization.";
+    ? "Einblicke, Tipps und Best Practices zu Videobearbeitung, Post-Produktion und Video-Content-Erstellung — auf Deutsch."
+    : "Insights, tips, and best practices for video editing, post-production, color grading, and video content creation.";
 
   return {
     title,
     description,
     keywords: isDe
       ? [
-          "Webdesign Blog",
-          "Webentwicklung Tipps",
-          "Website Design deutsch",
-          "UX Design",
-          "don-webdesign",
-          "Webdesign Agentur Blog",
+          "Video Editing Blog",
+          "Videobearbeitung Tipps",
+          "Post-Produktion deutsch",
+          "Farbkorrektur",
+          "don-video-editing",
+          "Video Editing Agentur Blog",
         ]
       : [
-          "web design blog",
-          "web development tips",
-          "website design insights",
-          "UX design",
-          "don-webdesign",
-          "web agency blog",
+          "video editing blog",
+          "video editing tips",
+          "post-production insights",
+          "color grading",
+          "don-video-editing",
+          "video agency blog",
         ],
     alternates: {
       canonical,
@@ -53,8 +53,8 @@ export async function generateMetadata({
       type: "website",
       locale: isDe ? "de_DE" : "en_US",
       alternateLocale: isDe ? "en_US" : "de_DE",
-      siteName: "don-webdesign",
-      images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "don-webdesign Design Blog" }],
+      siteName: "don-video-editing",
+      images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "don-video-editing Blog" }],
     },
     twitter: {
       card: "summary_large_image",

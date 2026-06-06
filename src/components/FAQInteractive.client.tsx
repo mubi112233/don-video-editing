@@ -6,15 +6,28 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Shield, Zap } from "lucide-react";
 import { getCopy } from "@/lib/copy";
-import type { FAQItem } from "@/lib/api";
+import { fetchApiDataClient, API_ENDPOINTS, normalizeLanguage, type FAQItem, type FAQResponse } from "@/lib/api";
 
-export function FAQInteractive({ faqs, lang }: { faqs: FAQItem[]; lang: string }) {
+export function FAQInteractive({ faqs: initialFaqs, lang }: { faqs: FAQItem[]; lang: string }) {
   const copy = getCopy(lang, "faq");
   const [openItem, setOpenItem] = useState<string>("");
+  const [faqs, setFaqs] = useState<FAQItem[]>(initialFaqs ?? []);
+
+  useEffect(() => {
+    // Only fetch client-side if server didn't provide data
+    if (initialFaqs && initialFaqs.length > 0) return;
+    fetchApiDataClient<FAQResponse>(API_ENDPOINTS.FAQ, normalizeLanguage(lang))
+      .then((data) => {
+        if (data?.faqs && data.faqs.length > 0) {
+          setFaqs(data.faqs.slice(0, 10));
+        }
+      })
+      .catch(() => {/* silent — no data to show */});
+  }, [lang, initialFaqs]);
 
   return (
     <section
@@ -31,19 +44,20 @@ export function FAQInteractive({ faqs, lang }: { faqs: FAQItem[]; lang: string }
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <motion.span
-              className="inline-block px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-primary text-primary-foreground text-xs sm:text-sm font-bold rounded-full mb-3 sm:mb-4 shadow-lg"
+              className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-yellow-500 via-orange-500 to-amber-500 text-white text-xs sm:text-sm font-bold rounded-full mb-3 sm:mb-4 shadow-[0_8px_24px_-6px_rgba(168,85,247,0.6)] border border-white/30 backdrop-blur-sm relative overflow-hidden animate-pulse"
               whileHover={{ scale: 1.05 }}
               initial={{ scale: 0.8, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
             >
-              Got Questions?
+              <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 opacity-50"></span>
+              <span className="relative z-10">Got Questions?</span>
             </motion.span>
 
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 text-foreground leading-tight">
+            <h2 className="section-heading">
               {copy.title || "Frequently Asked Questions"}
             </h2>
-            <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-lg text-muted-foreground max-w-2xl mx-auto dark:text-white/90">
               {copy.description || "Everything you need to know about our services. Can't find the answer you're looking for? Reach out to our team."}
             </p>
           </motion.div>

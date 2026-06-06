@@ -14,10 +14,10 @@ export async function generateMetadata({
   const { lang: raw } = await params;
   const seg = publicLocalePathSegment(raw);
   const isDE = seg === "de";
-  const title = isDE ? "Termin buchen — Kostenlose Webdesign-Beratung | don-webdesign" : "Book a Meeting — Free Web Design Consultation | don-webdesign";
+  const title = isDE ? "Termin buchen — Kostenlose Video Editing Beratung | don-video-editing" : "Book a Meeting — Free Video Editing Consultation | don-video-editing";
   const description = isDE
-    ? "Vereinbaren Sie eine kostenlose Beratung mit don-webdesign und erfahren Sie, wie wir Ihnen helfen, Ihre Website zu optimieren."
-    : "Schedule a free consultation with don-webdesign and learn how we can help transform your website with premium design.";
+    ? "Vereinbaren Sie eine kostenlose Beratung mit don-video-editing und erfahren Sie, wie wir Ihnen helfen, Ihre Videos professionell zu bearbeiten."
+    : "Schedule a free consultation with don-video-editing and learn how we can transform your raw footage into professional video content.";
   const { languages } = hreflangAlternates("book-meeting");
   const canonical = absoluteUrl(`/${seg}/book-meeting`);
 
@@ -25,8 +25,8 @@ export async function generateMetadata({
     title,
     description,
     keywords: isDE
-      ? ["Webdesign Beratung", "Webdesign Termin", "don-webdesign termin", "Website Beratung"]
-      : ["web design consultation", "web design call", "don-webdesign meeting", "website consultation"],
+      ? ["Videobearbeitung Beratung", "Video Editing Termin", "don-video-editing termin", "Post-Produktion Beratung"]
+      : ["video editing consultation", "video editing call", "don-video-editing meeting", "post-production consultation"],
     alternates: {
       canonical,
       languages,
@@ -38,8 +38,8 @@ export async function generateMetadata({
       type: "website",
       locale: isDE ? "de_DE" : "en_US",
       alternateLocale: isDE ? "en_US" : "de_DE",
-      siteName: "don-webdesign",
-      images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "don-webdesign Web Design Agency" }],
+      siteName: "don-video-editing",
+      images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "don-video-editing Video Editing Agency" }],
     },
     twitter: {
       card: "summary_large_image",
