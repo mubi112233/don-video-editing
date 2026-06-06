@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     template: "%s | don-video-editing",
   },
   description:
-    "Professional video editing services. High-quality cuts, color grading, motion graphics, and post-production. Fast turnaround, guaranteed satisfaction. Book your free consultation today.",
+    "Professional video editing services. High-quality cuts, color grading, motion graphics, and post-production. Trusted by 250+ clients. Fast turnaround, guaranteed satisfaction. Book your free consultation today.",
   keywords: [
     "video editing service",
     "professional video editor",

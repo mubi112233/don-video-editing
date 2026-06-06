@@ -5,10 +5,10 @@
 export const isProduction = process.env.NODE_ENV === "production";
 
 // Force correct production domain - update this if domain changes
-const PRODUCTION_SITE_URL = "https://www.don-video-editing.com";
+const PRODUCTION_SITE_URL = "https://www.don-video.com";
 const DEFAULT_SITE_URL = isProduction ? PRODUCTION_SITE_URL : "http://localhost:3000";
 
-// Get env var but validate it doesn't contain old/wrong domains
+// Use env var if set and valid, otherwise fall back to production/local default
 const envUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
 const isValidEnvUrl = envUrl && !envUrl.includes("don-va.com");
 

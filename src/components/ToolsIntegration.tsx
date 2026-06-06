@@ -5,32 +5,30 @@ import { usePathname } from "next/navigation";
 import { SPACING } from "@/lib/constants";
 
 const tools = [
-  { name: "Adobe Creative Suite", category: "Design Software" },
-  { name: "Figma", category: "UI/UX Design" },
-  { name: "Sketch", category: "UI/UX Design" },
-  { name: "Adobe Illustrator", category: "Vector Graphics" },
-  { name: "Adobe Photoshop", category: "Photo Editing" },
-  { name: "Adobe InDesign", category: "Print Design" },
-  { name: "Canva", category: "Design Platform" },
-  { name: "Blender", category: "3D Design" },
+  { name: "Adobe Premiere Pro", category: "Video Editing" },
+  { name: "DaVinci Resolve", category: "Color Grading" },
   { name: "After Effects", category: "Motion Graphics" },
-  { name: "Premiere Pro", category: "Video Editing" },
-  { name: "Webflow", category: "Web Design" },
-  { name: "Framer", category: "Prototyping" },
+  { name: "Final Cut Pro", category: "Video Editing" },
+  { name: "Adobe Audition", category: "Audio Editing" },
+  { name: "Avid Media Composer", category: "Pro Editing" },
+  { name: "CapCut", category: "Short-Form Video" },
+  { name: "Cinema 4D", category: "3D Animation" },
+  { name: "Blender", category: "3D Animation" },
+  { name: "Topaz Video AI", category: "AI Upscaling" },
+  { name: "Frame.io", category: "Collaboration" },
+  { name: "LUT Packs", category: "Color Grading" },
 ];
 
 const categoryLabels: Record<string, { en: string; ge: string }> = {
-  "Design Software":    { en: "Design Software",     ge: "Design-Software" },
-  "UI/UX Design":       { en: "UI/UX Design",       ge: "UI/UX Design" },
-  "Vector Graphics":    { en: "Vector Graphics",    ge: "Vektorgrafik" },
-  "Photo Editing":      { en: "Photo Editing",      ge: "Bildbearbeitung" },
-  "Print Design":       { en: "Print Design",       ge: "Print-Design" },
-  "Design Platform":    { en: "Design Platform",    ge: "Design-Plattform" },
-  "3D Design":          { en: "3D Design",          ge: "3D-Design" },
-  "Motion Graphics":    { en: "Motion Graphics",    ge: "Motion Graphics" },
-  "Video Editing":      { en: "Video Editing",      ge: "Video-Bearbeitung" },
-  "Web Design":         { en: "Web Design",         ge: "Webdesign" },
-  "Prototyping":        { en: "Prototyping",         ge: "Prototyping" },
+  "Video Editing":    { en: "Video Editing",      ge: "Video-Bearbeitung" },
+  "Color Grading":    { en: "Color Grading",      ge: "Farbkorrektur" },
+  "Motion Graphics":  { en: "Motion Graphics",    ge: "Motion Graphics" },
+  "Audio Editing":    { en: "Audio Editing",      ge: "Audio-Bearbeitung" },
+  "Pro Editing":      { en: "Pro Editing",        ge: "Profi-Editing" },
+  "Short-Form Video": { en: "Short-Form Video",   ge: "Kurzform-Video" },
+  "3D Animation":     { en: "3D Animation",       ge: "3D-Animation" },
+  "AI Upscaling":     { en: "AI Upscaling",       ge: "KI-Upscaling" },
+  "Collaboration":    { en: "Collaboration",      ge: "Zusammenarbeit" },
 };
 
 export const ToolsIntegration = () => {
@@ -66,15 +64,15 @@ export const ToolsIntegration = () => {
           </motion.span>
           <h2 className="section-heading">
             {isGe ? (
-              <>Expertise in führenden <span className="gradient-heading">Design-Tools</span></>
+              <>Expertise in führenden <span className="gradient-heading">Video-Tools</span></>
             ) : (
-              <>Expertise in Leading <span className="gradient-heading">Design Tools</span></>
+              <>Expertise in Leading <span className="gradient-heading">Video Tools</span></>
             )}
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl dark:text-white/90">
             {isGe
-              ? "Unser Team beherrscht alle gängigen Design-Software und liefert in jedem Format, das Sie benötigen."
-              : "Our team masters all popular design software and delivers in any format you need."}
+              ? "Unser Team beherrscht alle führenden Videobearbeitungs-Tools und liefert in jedem Format, das Sie benötigen."
+              : "Our team masters all leading video editing tools and delivers in any format you need."}
           </p>
         </motion.div>
 
@@ -120,13 +118,13 @@ export const ToolsIntegration = () => {
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[hsl(var(--brand-blue))]/30 to-transparent"></div>
             <p className="text-base sm:text-lg md:text-xl font-bold text-foreground dark:text-white mb-3 sm:mb-4 relative z-10">
               <span className="bg-gradient-to-r from-[hsl(var(--brand-blue))] to-[hsl(var(--brand-blue))] bg-clip-text text-transparent">
-                {isGe ? "Benötigen Sie ein spezielles Format?" : "Need a specific file format?"}
+                {isGe ? "Benötigen Sie ein spezielles Format?" : "Need a specific video format?"}
               </span>{" "}{isGe ? "Einfach fragen." : "Just ask."}
             </p>
             <p className="text-sm sm:text-base text-muted-foreground dark:text-white/90 leading-relaxed relative z-10">
               {isGe
-                ? "Wir liefern in jedem Format – von druckfertigen PDFs bis zu web-optimierten Assets."
-                : "We deliver in any format — from print-ready PDFs to web-optimized assets."}
+                ? "Wir liefern in jedem Format – von YouTube-optimierten Videos bis zu Social-Media-Reels."
+                : "We deliver in any format — from YouTube-optimized videos to social media reels."}
             </p>
           </motion.div>
         </div>
