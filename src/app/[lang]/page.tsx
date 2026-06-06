@@ -105,7 +105,7 @@ export async function generateMetadata({
       description,
       url: canonical,
       type: "website",
-      siteName: "don-video-editing",
+      siteName: "don-video",
       locale: lang === "ge" ? "de_DE" : "en_US",
       alternateLocale: lang === "ge" ? "en_US" : "de_DE",
       images: [

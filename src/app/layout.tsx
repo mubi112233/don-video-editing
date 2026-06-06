@@ -49,9 +49,9 @@ export const metadata: Metadata = {
     "corporate video editing",
     "don-video-editing",
   ],
-  authors: [{ name: "don-video-editing", url: SITE_URL }],
-  creator: "don-video-editing",
-  publisher: "don-video-editing",
+  authors: [{ name: "don-video" }],
+  creator: "don-video",
+  publisher: "don-video",
   formatDetection: {
     email: false,
     address: false,
@@ -77,11 +77,11 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: "don-video-editing",
+    siteName: "don-video",
     title: "don-video-editing - Premium Video Editing Services",
     description:
       "Professional video editing services. High-quality cuts, color grading, motion graphics, and post-production. Fast turnaround, guaranteed satisfaction.",
-    url: absoluteUrl("/en"),
+    url: "https://www.don-video.com/en",
     locale: "en_US",
     alternateLocale: ["de_DE"],
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "don-video-editing — Premium Video Editing Services" }],
