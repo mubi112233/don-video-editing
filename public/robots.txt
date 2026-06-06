@@ -1,0 +1,28 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /static/
+Disallow: /.well-known/
+Crawl-delay: 1
+Request-rate: 10/1s
+
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Request-rate: unlimited
+
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Request-rate: 1/1s
+
+# Google Search Console verification
+# Note: For production, add GSC HTML file verification
+
+Sitemap: https://www.don-video.com/sitemap.xml
+Host: https://www.don-video.com

@@ -59,16 +59,25 @@ export const metadata: Metadata = {
   },
   verification: {
     google: "NilMqJxre6z_IfCF2MhSaELbgq16YxDG_WzE6e36ChU",
+    other: {
+      "yandex-verification": "yandex_verification_code",
+    },
   },
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
       "max-image-preview": "large",
       "max-snippet": -1,
       "max-video-preview": -1,
+      "max-snippet": -1,
+    },
+    other: {
+      "apple-mobile-web-app-capable": "yes",
+      "apple-mobile-web-app-status-bar-style": "black-translucent",
     },
   },
   openGraph: {

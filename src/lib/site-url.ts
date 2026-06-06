@@ -1,18 +1,30 @@
 /**
  * Canonical site origin for metadata, sitemap, and JSON-LD.
- * Set NEXT_PUBLIC_SITE_URL in production to match your live domain.
+ * CRITICAL: This must always point to www.don-video.com in production.
+ * Prevents duplicate content issues and ensures proper indexing.
  */
 export const isProduction = process.env.NODE_ENV === "production";
 
-// Force correct production domain - update this if domain changes
+// Force correct production domain - NEVER change this
 const PRODUCTION_SITE_URL = "https://www.don-video.com";
 const DEFAULT_SITE_URL = isProduction ? PRODUCTION_SITE_URL : "http://localhost:3000";
 
-// Use env var if set and valid, otherwise fall back to production/local default
+// Validate env URL - reject invalid domains to prevent indexing issues
 const envUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
-const isValidEnvUrl = envUrl && !envUrl.includes("don-va.com");
+const isValidEnvUrl =
+  envUrl &&
+  !envUrl.includes("don-va.com") &&
+  !envUrl.includes("don-video-editing.com") &&
+  (envUrl.includes("don-video.com") || !isProduction);
 
 export const SITE_URL = (isValidEnvUrl ? envUrl : DEFAULT_SITE_URL) as string;
+
+// Sanity check for production
+if (isProduction && !SITE_URL.includes("don-video.com")) {
+  console.error(
+    `[SEO CRITICAL] SITE_URL is incorrect in production: ${SITE_URL}. Must be https://www.don-video.com`
+  );
+}
 
 export function absoluteUrl(path: string): string {
   const p = path.startsWith("/") ? path : `/${path}`;
