@@ -17,7 +17,7 @@ export interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  brandName: "don-video-editing",
+  brandName: "Don Video Editing",
   brandMarkText: "D",
   defaultLocale: "en",
   apiBase: process.env.NEXT_PUBLIC_API_BASE || "https://api.don-va.com",

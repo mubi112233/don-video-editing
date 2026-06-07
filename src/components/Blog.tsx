@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import { fetchBlog } from "@/lib/api";
 import { getCopy } from "@/lib/copy";
 import { SPACING } from "@/lib/constants";
+import { normalizeLocale, localeUrlPrefix } from "@/lib/site-config";
 
 const decodeHtml = (value: string) => {
   if (!value) return value;
@@ -49,7 +50,8 @@ interface BlogPost {
 
 export const Blog = ({ initialPosts }: { initialPosts?: BlogPost[] }) => {
   const pathname = usePathname();
-  const currentLang = pathname.startsWith("/ge") || pathname.startsWith("/de") ? "ge" : "en";
+  const currentLang = normalizeLocale(pathname); // 'en' | 'ge'
+  const urlLang = localeUrlPrefix(currentLang);   // 'en' | 'de' — correct public URL segment
   const [posts, setPosts] = useState<BlogPost[]>(initialPosts ?? []);
   const [loading, setLoading] = useState(initialPosts === undefined || initialPosts.length === 0);
   const [error, setError] = useState<string | null>(null);
@@ -141,18 +143,22 @@ export const Blog = ({ initialPosts }: { initialPosts?: BlogPost[] }) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-7xl mx-auto">
           {validPosts.map((post: BlogPost, index: number) => {
-            const postId = post.blogId ?? post.id ?? index;
-            const postSlug = post.slug || `${slugify(post.title)}-${postId}`;
+            const postId = post.blogId ?? (typeof post.id === 'number' ? post.id : undefined);
+            const postSlug = post.slug
+              ? post.slug
+              : postId != null
+                ? `${slugify(post.title)}-${postId}`
+                : slugify(post.title);
             return (
             <motion.div
-              key={`${post.blogId || post.id || 'post'}-${index}`}
+              key={`${postId ?? 'post'}-${index}`}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
               <Link
-                href={`/${currentLang}/blog/${postSlug}`}
+                href={`/${urlLang}/blog/${postSlug}`}
                 className="group bg-card border border-border rounded-xl sm:rounded-2xl overflow-hidden hover:border-primary/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 w-full block h-full"
               >
                 {/* Image */}
