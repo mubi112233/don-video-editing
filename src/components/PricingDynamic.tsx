@@ -145,7 +145,7 @@ export const PricingDynamic = ({ lang, initialPlans }: { lang: string; initialPl
   // Loading
   if (loading) {
     return (
-      <section id="pricing" className="relative py-8 sm:py-12 md:py-16 lg:py-20 bg-background text-white z-10 overflow-hidden">
+      <section id="pricing" className="relative py-8 sm:py-12 md:py-16 lg:py-20 bg-background text-foreground z-10 overflow-hidden">
         <div className={`container mx-auto ${SPACING.container}`}>
           <div className="flex items-center justify-center py-20">
             <Loader2 className="w-8 h-8 animate-spin text-primary" />
@@ -158,10 +158,10 @@ export const PricingDynamic = ({ lang, initialPlans }: { lang: string; initialPl
   // Error
   if (error) {
     return (
-      <section id="pricing" className="relative py-8 sm:py-12 md:py-16 lg:py-20 bg-background text-white z-10 overflow-hidden">
+      <section id="pricing" className="relative py-8 sm:py-12 md:py-16 lg:py-20 bg-background text-foreground z-10 overflow-hidden">
         <div className={`container mx-auto ${SPACING.container}`}>
           <div className="text-center py-20">
-            <p className="text-white/60 mb-4">{error}</p>
+            <p className="text-muted-foreground mb-4">{error}</p>
             <button 
               type="button"
               className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-border bg-secondary hover:bg-secondary/80 text-secondary-foreground h-10 px-4 py-2"
@@ -178,10 +178,10 @@ export const PricingDynamic = ({ lang, initialPlans }: { lang: string; initialPl
   // No plans
   if (!loading && plans.length === 0) {
     return (
-      <section id="pricing" className="relative py-8 sm:py-12 md:py-16 lg:py-20 bg-background text-white z-10 overflow-hidden">
+      <section id="pricing" className="relative py-8 sm:py-12 md:py-16 lg:py-20 bg-background text-foreground z-10 overflow-hidden">
         <div className={`container mx-auto ${SPACING.container}`}>
           <div className="text-center py-20">
-            <p className="text-white/60">
+            <p className="text-muted-foreground">
               {currentLang === 'ge'
                 ? 'Keine Preispläne verfügbar.'
                 : currentLang === 'en'
@@ -197,7 +197,7 @@ export const PricingDynamic = ({ lang, initialPlans }: { lang: string; initialPl
   return (
     <motion.section
       id="pricing"
-      className="relative py-8 sm:py-12 md:py-16 lg:py-20 bg-background text-white z-10 overflow-hidden"
+      className="relative py-8 sm:py-12 md:py-16 lg:py-20 bg-background text-foreground z-10 overflow-hidden"
       initial={{ opacity: 0, y: 200 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
@@ -451,7 +451,7 @@ export const PricingDynamic = ({ lang, initialPlans }: { lang: string; initialPl
                 <div className={`relative rounded-2xl p-6 sm:p-8 md:p-10 transition-all duration-500 group h-full ${
                   plan.highlighted
                     ? 'bg-gradient-to-br from-primary via-primary/80 to-primary text-white shadow-[0_25px_70px_-15px_rgba(var(--primary),0.5)]'
-                    : 'bg-white/5 border-2 border-white/10 hover:border-primary/80 hover:shadow-[0_25px_70px_-15px_rgba(var(--primary),0.4)]'
+                    : 'bg-card border border-border hover:border-primary/60 hover:shadow-[0_25px_70px_-15px_rgba(59,130,246,0.18)] shadow-sm text-foreground'
                 }`}>
 
                   {/* Top accent line */}
@@ -552,7 +552,7 @@ export const PricingDynamic = ({ lang, initialPlans }: { lang: string; initialPl
                     className={`w-full px-6 sm:px-8 py-3 sm:py-4 font-bold text-base sm:text-lg rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                       plan.highlighted
                         ? 'bg-white text-primary hover:bg-white/90'
-                        : 'border-2 border-white/20 hover:border-primary bg-white/5 hover:bg-white/10 text-white'
+                        : 'border border-border bg-card hover:border-primary hover:bg-primary/5 text-foreground'
                     }`}
                     onClick={() => router.push(`/${lang || currentLang || 'en'}/book-meeting`)}
                   >
@@ -566,7 +566,7 @@ export const PricingDynamic = ({ lang, initialPlans }: { lang: string; initialPl
 
         {/* Disclaimer */}
         <motion.p
-          className="text-center text-white/60 mt-10 sm:mt-12 md:mt-16 lg:mt-20 max-w-3xl mx-auto leading-relaxed text-sm sm:text-base px-4"
+          className="text-center text-muted-foreground mt-10 sm:mt-12 md:mt-16 lg:mt-20 max-w-3xl mx-auto leading-relaxed text-sm sm:text-base px-4"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}

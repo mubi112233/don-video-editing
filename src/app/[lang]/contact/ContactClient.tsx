@@ -288,7 +288,8 @@ export default function ContactClient({ lang }: { lang: string }) {
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const formData = new FormData();
-    formData.append("access_key", "8aff1902-6795-4608-ad79-be6702aa7f3a");
+    const web3formsAccessKey = process.env.VITE_WEB3FORMS_ACCESS_KEY || "8aff1902-6795-4608-ad79-be6702aa7f3a";
+    formData.append("access_key", web3formsAccessKey);
     formData.append("to", "patryk@dononlineagency.com");
     formData.append("subject", "New Video Editing Project Inquiry - don-video-editing");
     formData.append("companyName", data.companyName);

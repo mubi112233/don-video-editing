@@ -52,6 +52,7 @@ const nextConfig = {
   },
   env: {
     NEXT_PUBLIC_API_BASE: process.env.NEXT_PUBLIC_API_BASE || 'https://api.don-va.com',
+    VITE_WEB3FORMS_ACCESS_KEY: process.env.VITE_WEB3FORMS_ACCESS_KEY || '8aff1902-6795-4608-ad79-be6702aa7f3a',
   },
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion'],

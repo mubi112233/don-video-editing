@@ -107,7 +107,7 @@ export const Pricing = () => {
   return (
     <motion.section 
       id="pricing"
-      className="relative py-4 sm:py-6 md:py-8 lg:py-10 text-white z-10 overflow-hidden bg-background"
+      className="relative py-4 sm:py-6 md:py-8 lg:py-10 text-foreground z-10 overflow-hidden bg-background"
       initial={{ opacity: 0, y: 200 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
@@ -379,7 +379,7 @@ export const Pricing = () => {
               <div className={`relative rounded-2xl p-6 sm:p-8 md:p-10 transition-all duration-500 group h-full ${
                 plan.highlighted 
                   ? 'bg-gradient-to-br from-primary via-primary/90 to-primary text-primary-foreground shadow-lg' 
-                  : 'bg-background border-2 border-border hover:border-primary/50 hover:shadow-lg'
+                  : 'bg-card border-2 border-border hover:border-primary/50 hover:shadow-lg shadow-sm'
               }`}>
                 {/* Top accent line with animation */}
                 <motion.div 
