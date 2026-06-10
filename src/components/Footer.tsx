@@ -68,8 +68,29 @@ export const Footer: React.FC = () => {
   const c = links[lang];
 
   return (
-    <footer className="w-full bg-[hsl(250,50%,12%)] border-t border-white/10 mt-8">
+    <footer className="w-full bg-card border-t border-border mt-8 text-foreground dark:bg-[hsl(250,50%,12%)] dark:text-white">
       <div className={`container mx-auto ${SPACING.container} py-12 sm:py-16`}>
+        {/* Promo banner: visible and legible in light mode */}
+        <div className="mb-8 p-6 rounded-2xl bg-card/80 border border-border shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="flex-1">
+            <h3 className="text-2xl font-bold text-foreground mb-2">Ready to Elevate Your Video Content?</h3>
+            <p className="text-sm text-muted-foreground mb-3">Let's CreateSomething Amazing — book your free video editing consultation and discover how we can transform your raw footage into compelling content.</p>
+            <ul className="text-sm text-muted-foreground space-y-1">
+              <li>Free consultation • Fast 5-day turnaround</li>
+              <li>Professional editors • Full file ownership</li>
+              <li>No commitment • Cancel anytime • No credit card required</li>
+            </ul>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center gap-3">
+            <Link href="https://www.don-video.com/en/book-meeting" className="inline-block px-5 py-3 bg-primary text-primary-foreground text-sm font-bold rounded-lg hover:bg-primary/90 transition-colors">
+              Book Free Consultation
+            </Link>
+            <Link href="https://www.don-video.com/en#" className="inline-block px-4 py-3 border border-border rounded-lg text-sm text-foreground hover:bg-primary/5 transition-colors">
+              Chat on WhatsApp
+            </Link>
+          </div>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
           {/* Brand */}
