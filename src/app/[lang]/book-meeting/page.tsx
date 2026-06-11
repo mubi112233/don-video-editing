@@ -57,7 +57,7 @@ export default async function BookMeetingPage({
   params: Promise<{ lang: string }>;
 }) {
   const { lang: rawLang } = await params;
-  if (!SUPPORTED_LANGS.includes(rawLang?.toLowerCase())) notFound();
+  if (!SUPPORTED_LANGS.includes(rawLang?.toLowerCase() ?? "")) notFound();
   const lang = rawLang === "ge" || rawLang === "de" ? "ge" : "en";
   const isDE = lang === "ge";
   const breadcrumbSchema = generateBreadcrumbSchema([

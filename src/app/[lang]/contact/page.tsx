@@ -57,8 +57,9 @@ export default async function ContactPage({
   params: Promise<{ lang: string }>;
 }) {
   const { lang: rawLang } = await params;
-  if (!SUPPORTED_LANGS.includes(rawLang?.toLowerCase())) notFound();
-  const lang = rawLang === "ge" || rawLang === "de" ? "ge" : "en";
+  const safeLang = rawLang?.toLowerCase() ?? "en";
+  if (!SUPPORTED_LANGS.includes(safeLang)) notFound();
+  const lang = safeLang === "ge" || safeLang === "de" ? "ge" : "en";
   const breadcrumbSchema = generateBreadcrumbSchema([
     { label: lang === "ge" ? "Startseite" : "Home", href: `/${lang}` },
     { label: lang === "ge" ? "Kontakt" : "Contact", href: `/${lang}/contact` },
